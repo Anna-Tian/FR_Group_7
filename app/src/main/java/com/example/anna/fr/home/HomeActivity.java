@@ -1,4 +1,4 @@
-package com.example.anna.fr.Home;
+package com.example.anna.fr.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.anna.fr.R;
-import com.example.anna.fr.Utils.BottomNavigationViewHelper;
-import com.example.anna.fr.Utils.FilterActivity;
-import com.example.anna.fr.Utils.UniversalImageLoader;
+import com.example.anna.fr.utils.BottomNavigationViewHelper;
+import com.example.anna.fr.utils.FilterActivity;
+import com.example.anna.fr.utils.UniversalImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+
     private void initImageLoader(){
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
@@ -45,8 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.homeBar);
         setSupportActionBar(toolbar);
 
-        ImageView profileMenu = (ImageView) findViewById(R.id.filterMenu);
-        profileMenu.setOnClickListener(new View.OnClickListener(){
+        ImageView filterMenu = (ImageView) findViewById(R.id.filterMenu);
+        filterMenu.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to filter selection.");

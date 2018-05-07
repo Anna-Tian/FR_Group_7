@@ -1,4 +1,4 @@
-package com.example.anna.fr.Utils;
+package com.example.anna.fr.utils;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anna.fr.R;
-import com.example.anna.fr.Random.ItemView;
+import com.example.anna.fr.random.ItemView;
 
 import java.util.ArrayList;
 import java.util.List;

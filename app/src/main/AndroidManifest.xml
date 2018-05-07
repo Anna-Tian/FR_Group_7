@@ -12,18 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home.HomeActivity">
+        <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Search.SearchActivity"></activity>
-        <activity android:name=".Random.RandomActivity"></activity>
-        <activity android:name=".Me.MeActivity"></activity>
-        <activity android:name=".Me.AccountSettingsActivity"></activity>
-        <activity android:name=".Utils.FilterActivity"></activity>
+        <activity android:name=".search.SearchActivity"></activity>
+        <activity android:name=".random.RandomActivity"></activity>
+        <activity android:name=".me.MeActivity"></activity>
+        <activity android:name=".me.AccountSettingsActivity"></activity>
+        <activity android:name=".utils.FilterActivity"></activity>
+        <activity android:name=".login.RegisterActivity"></activity>
+        <activity android:name=".login.LoginActivity"></activity>
+
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.anna.fr.Utils;
+package com.example.anna.fr.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
-import com.example.anna.fr.Home.HomeActivity;
-import com.example.anna.fr.Me.MeActivity;
+import com.example.anna.fr.home.HomeActivity;
+import com.example.anna.fr.me.MeActivity;
 import com.example.anna.fr.R;
-import com.example.anna.fr.Random.RandomActivity;
-import com.example.anna.fr.Search.SearchActivity;
+import com.example.anna.fr.random.RandomActivity;
+import com.example.anna.fr.search.SearchActivity;
 
 /**
  * Created by anna on 13/4/18.

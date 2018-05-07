@@ -1,4 +1,4 @@
-package com.example.anna.fr.Random;
+package com.example.anna.fr.random;
 
 /**
  * Created by anna on 24/4/18.

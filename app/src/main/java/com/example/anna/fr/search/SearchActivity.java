@@ -1,4 +1,4 @@
-package com.example.anna.fr.Search;
+package com.example.anna.fr.search;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.anna.fr.R;
-import com.example.anna.fr.Utils.BottomNavigationViewHelper;
-import com.example.anna.fr.Utils.SectionsPagerAdapter;
+import com.example.anna.fr.utils.BottomNavigationViewHelper;
+import com.example.anna.fr.utils.SectionsPagerAdapter;
 
 /**
  * Created by anna on 13/4/18.

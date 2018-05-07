@@ -1,8 +1,6 @@
-package com.example.anna.fr.Utils;
+package com.example.anna.fr.utils;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.anna.fr.R;
 
 import java.util.ArrayList;

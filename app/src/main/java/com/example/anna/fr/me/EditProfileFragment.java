@@ -1,4 +1,4 @@
-package com.example.anna.fr.Me;
+package com.example.anna.fr.me;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.anna.fr.R;
-import com.example.anna.fr.Utils.UniversalImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.example.anna.fr.utils.UniversalImageLoader;
 
 /**
  * Created by anna on 17/4/18.

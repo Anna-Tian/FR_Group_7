@@ -1,4 +1,4 @@
-package com.example.anna.fr.Utils;
+package com.example.anna.fr.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

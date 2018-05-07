@@ -16,7 +16,7 @@
         <include layout="@layout/layout_bottom_navigation_view" />
 
         <ProgressBar
-            android:id="@+id/profileProgressBar"
+            android:id="@+id/progressBar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"

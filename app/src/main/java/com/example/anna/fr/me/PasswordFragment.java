@@ -1,4 +1,4 @@
-package com.example.anna.fr.Me;
+package com.example.anna.fr.me;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

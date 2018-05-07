@@ -1,4 +1,4 @@
-package com.example.anna.fr.Me;
+package com.example.anna.fr.me;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.example.anna.fr.R;
-import com.example.anna.fr.Utils.SectionsStatePagerAdapter;
+import com.example.anna.fr.utils.SectionsStatePagerAdapter;
 
 import java.util.ArrayList;
 
