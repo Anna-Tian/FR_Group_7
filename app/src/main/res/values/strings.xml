@@ -7,4 +7,34 @@
     <string name="version">Version</string>
     <string name="push_notification">Push Notification</string>
     <string name="sign_out">Sign Out</string>
+    <string name="dialog_title">Items available to filter</string>
+    <string name="ok_label">OK</string>
+    <string name="dismiss_label">Dismiss</string>
+    <string name="clear_all_label">Clear all</string>
+
+    <string-array name="Country">
+        <item>Chinese</item>
+        <item>Italian</item>
+        <item>Tailand</item>
+        <item>Japanese</item>
+        <item>Korean</item>
+    </string-array>
+
+    <string-array name="Cuisine">
+        <item>café</item>
+        <item>bakery</item>
+        <item>burger</item>
+        <item>pizza</item>
+        <item>fast</item>
+    </string-array>
+
+    <string-array name="More">
+        <item>opening hour</item>
+        <item>outdoor seat</item>
+        <item>card</item>
+        <item>BYO</item>
+        <item>WIFI</item>
+        <item>INTERNET</item>
+        <item>Gluten-free</item>
+    </string-array>
 </resources>
