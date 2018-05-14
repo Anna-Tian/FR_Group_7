@@ -19,14 +19,74 @@
             <include layout="@layout/snippet_top_filtertoolbar"/>
         </RelativeLayout>
 
-        <ListView
-            android:id="@+id/checkableList"
+
+        <TextView
+            android:id="@+id/filter_itemSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="140dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp"
+            android:textStyle="italic" />
+        <TextView
+            android:id="@+id/filter_itemSelected_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp"
+            android:textStyle="italic" />
+        <TextView
+            android:id="@+id/filter_itemSelected_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp"
+            android:textStyle="italic" />
+
+
+        <Button
+            android:id="@+id/filter_country_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relLayout2"
-            android:layout_marginLeft="15dp">
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:text="Country" />
 
-        </ListView>
+        <Button
+            android:id="@+id/filer_cuisine_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="179dp"
+            android:text="Cuisine" />
+
+        <Button
+            android:id="@+id/filter_more_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="248dp"
+            android:text="More" />
+
+        <!--<ListView-->
+            <!--android:id="@+id/checkableList"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/relLayout2"-->
+            <!--android:layout_marginLeft="15dp">-->
+
+        <!--</ListView>-->
 
     </RelativeLayout>
 
