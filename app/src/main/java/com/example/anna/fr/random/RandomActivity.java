@@ -30,7 +30,7 @@ public class RandomActivity extends AppCompatActivity{
 
 
 
-        //setupBottomNavigationView();
+        setupBottomNavigationView();
     }
 
     private void setupBottomNavigationView() {

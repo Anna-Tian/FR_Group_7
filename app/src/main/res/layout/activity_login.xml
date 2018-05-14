@@ -71,7 +71,7 @@
     <ProgressBar
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:id="@+id/prograssBar"
+        android:id="@+id/progressBar"
         android:layout_centerInParent="true"
         android:paddingBottom="20dp"/>
 
@@ -82,6 +82,6 @@
         android:text="please wait..."
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_alignBottom="@+id/prograssBar"
+        android:layout_alignBottom="@+id/progressBar"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>

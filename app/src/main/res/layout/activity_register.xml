@@ -73,21 +73,21 @@
         android:background="@drawable/white_rounded_button"/>
 
 </LinearLayout>
-
     <ProgressBar
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:id="@+id/Prograssbar"
+        android:id="@+id/progressBar"
         android:layout_centerInParent="true"
         android:paddingBottom="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/pleaseWait"
         android:text="please wait..."
-        android:id="@+id/loadingPleaseWait"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_alignBottom="@+id/Prograssbar"
+        android:layout_alignBottom="@+id/progressBar"
         android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

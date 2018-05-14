@@ -12,9 +12,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import com.example.anna.fr.login.LoginActivity;
 import com.example.anna.fr.R;
@@ -33,6 +36,8 @@ public class MeActivity extends AppCompatActivity{
 
     private ProgressBar mProgressBar;
     private ImageView profilePhoto;
+    private TextView tvUsername;
+    private EditText mUsername;
 
     private Context mContext = MeActivity.this;
 
@@ -45,122 +50,139 @@ public class MeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Log.d(TAG,"onCreate: started.");
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mProgressBar.setVisibility(View.GONE);
+//        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+//        mProgressBar.setVisibility(View.GONE);
 
-        TextView linkLogin = (TextView) findViewById(R.id.textUsername);
-        linkLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: navigating to login screen");
-                Intent intent = new Intent (MeActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        setupBottomNavigationView();
-        setupToolbar();
-        setupActivityWidgets();
-        setProfileImage();
-        setupFirebaseAuth();
+        init();
+//        setupBottomNavigationView();
+//        setupToolbar();
+//        setupActivityWidgets();
+//        setProfileImage();
+//        setupFirebaseAuth();
     }
 
-    private void setProfileImage(){
-        Log.d(TAG, "setProfileImage: setting profile photo.");
-        String imgURL = "pbs.twimg.com/profile_images/875443327835025408/ZvmtaSXW_400x400.jpg";
-        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
-    }
-    private void setupActivityWidgets(){
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mProgressBar.setVisibility(View.GONE);
-        profilePhoto = (ImageView) findViewById(R.id.profile_photo);
-    }
+    private void init(){
+        Log.d(TAG, "init: inflating " + getString(R.string.me_fragment));
 
-    //transfer to new page
-    private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.profileToolBar);
-        setSupportActionBar(toolbar);
-
-        ImageView profileMenu = (ImageView) findViewById(R.id.profileMenu);
-        profileMenu.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: navigating to account settings.");
-                Intent intent = new Intent(mContext, AccountSettingsActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
+        MeFragment fragment = new MeFragment();
+        FragmentTransaction transaction = MeActivity.this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(getString(R.string.me_fragment));
+        transaction.commit();
     }
 
-    /*
-    -----------Firebase-----------------
-     */
-
-    //checks to see if the @param 'user' is logged in
-    private void checkCurrentUser (FirebaseUser user){
-        Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
-
-        if (user == null){
-            Intent intent = new Intent (mContext, LoginActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    //set up the firebase auth object
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth");
-
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                // check if the user is logged in
-                checkCurrentUser(user);
-
-                if (user != null){
-                    // user is signed in
-                    Log.d(TAG, "onAuthStateChanged: sined_in: " + user.getUid());
-                } else {
-                    // user is signed out
-                    Log.d(TAG, "onAuthStateChanged: signed_out");
-                }
-            }
-        };
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        mAuth.addAuthStateListener(mAuthListener);
-        checkCurrentUser(mAuth.getCurrentUser());
-    }
-
-    public void onStop(){
-        super.onStop();
-        if(mAuthListener != null){
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
-    /*
-    -----------Firebase-----------------
-     */
-
-    private void setupBottomNavigationView() {
-        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-        menuItem.setChecked(true);
-
-    }
-
-    
+//    private void setProfileImage(){
+//        Log.d(TAG, "setProfileImage: setting profile photo.");
+//        String imgURL = "pbs.twimg.com/profile_images/875443327835025408/ZvmtaSXW_400x400.jpg";
+//        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
+//    }
+//    private void setupActivityWidgets(){
+//        mUsername = (EditText) findViewById(R.id.input_username);
+//        tvUsername = (TextView) findViewById(R.id.display_name);
+//        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+//        mProgressBar.setVisibility(View.GONE);
+//        profilePhoto = (ImageView) findViewById(R.id.profile_photo);
+//    }
+//
+//    //transfer to new page
+//    private void setupToolbar(){
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.profileToolBar);
+//        setSupportActionBar(toolbar);
+//
+//        ImageView profileMenu = (ImageView) findViewById(R.id.profileMenu);
+//        profileMenu.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "onClick: navigating to account settings.");
+//                Intent intent = new Intent(mContext, AccountSettingsActivity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
+//
+//    }
+//
+//    /*
+//    -----------Firebase-----------------
+//     */
+//
+//    //checks to see if the @param 'user' is logged in
+//
+//    /*
+//        private void checkCurrentUser (FirebaseUser user){
+//        Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
+//
+//        if (user == null){
+//            Intent intent = new Intent (mContext, LoginActivity.class);
+//            startActivity(intent);
+//            }
+//        }
+//    */
+//
+//    //set up the firebase auth object
+//    private void setupFirebaseAuth(){
+//        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth");
+//
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//
+//                // check if the user is logged in
+//                //checkCurrentUser(user);
+//
+//                if (user != null){
+//                    // user is signed in
+//                    Log.d(TAG, "onAuthStateChanged: signed_in: " + user.getUid());
+//                } else {
+//                    // user is signed out
+//                    Log.d(TAG, "onAuthStateChanged: signed_out");
+//
+//                    TextView linkLogin = (TextView) findViewById(R.id.display_name);
+//                    linkLogin.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Log.d(TAG, "onClick: navigating to login screen");
+//                            Intent intent = new Intent (MeActivity.this, LoginActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                }
+//            }
+//        };
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        mAuth.addAuthStateListener(mAuthListener);
+//        mAuth.getCurrentUser();
+//        //checkCurrentUser(mAuth.getCurrentUser());
+//    }
+//
+//    public void onStop(){
+//        super.onStop();
+//        if(mAuthListener != null){
+//            mAuth.removeAuthStateListener(mAuthListener);
+//        }
+//    }
+//
+//    /*
+//    -----------Firebase-----------------
+//     */
+//
+//    private void setupBottomNavigationView() {
+//        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
+//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavViewBar);
+//        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
+//        Menu menu = bottomNavigationView.getMenu();
+//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+//        menuItem.setChecked(true);
+//
+//    }
+//
+//
 }

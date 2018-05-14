@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/searchIcon"
-                    android:layout_toStartOf="@+id/cancelSearch"
+                    android:layout_toStartOf="@+id/searchBtn"
                     android:layout_centerVertical="true"
                     android:inputType="text"
                     android:hint="What you want to eat?" />
@@ -42,12 +42,12 @@
                 <Button
                     android:layout_width="75dp"
                     android:layout_height="35dp"
-                    android:id="@+id/cancelSearch"
-                    android:background="@drawable/grey_border"
+                    android:id="@+id/searchBtn"
+                    android:background="@drawable/white_rounded_button"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="20dp"
-                    android:text="Cancel"
+                    android:text="search"
                     android:textSize="14sp"/>
             </RelativeLayout>
 

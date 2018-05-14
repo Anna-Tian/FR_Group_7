@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "534016996568-riei71eg1d7si399fiuuo3aa2iqcharo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anna.fr",
+            "certificate_hash": "af5fef0397d84578e8377f1919041f80efffd11f"
+          }
+        },
+        {
+          "client_id": "534016996568-e55vllslhmvu0l63ohsgo4jf1qk7v07d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anna.fr",
+            "certificate_hash": "9df2a819b3012a7e4aa8222060e0a0732de10a62"
+          }
+        },
+        {
           "client_id": "534016996568-dhiumbknndj0s9ijg24jo9qudg9g7pvd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

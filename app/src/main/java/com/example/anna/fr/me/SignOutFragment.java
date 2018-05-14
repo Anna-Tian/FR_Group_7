@@ -37,14 +37,14 @@ public class SignOutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_signout, container, false);
         tvSignout =(TextView) view.findViewById(R.id.tvConfirmSignout);
-        mProgressBar = (ProgressBar) view.findViewById(R.id.prograssBar);
-        Button btnConfirnSignOut = (Button) view.findViewById(R.id.btnConfirmSignout);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        Button btnConfirmSignOut = (Button) view.findViewById(R.id.btnConfirmSignout);
         tvSigningOut = (TextView) view.findViewById(R.id.tvSigningOut);
 
         mProgressBar.setVisibility(View.GONE);
         tvSigningOut.setVisibility(View.GONE);
 
-        btnConfirnSignOut.setOnClickListener(new View.OnClickListener() {
+        btnConfirmSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to sign out.");
@@ -78,13 +78,14 @@ public class SignOutFragment extends Fragment {
 
                 if (user != null){
                     // user is signed in
-                    Log.d(TAG, "onAuthStateChanged: sined_in: " + user.getUid());
+                    Log.d(TAG, "onAuthStateChanged: signed_in: " + user.getUid());
                 } else {
                     // user is signed out
                     Log.d(TAG, "onAuthStateChanged: signed_out");
 
-                    Log.d(TAG, "onAuthStateChanged: navigating back to login screen.");
-                    Intent intent = new Intent(getActivity(),LoginActivity.class);
+                    Log.d(TAG, "onAuthStateChanged: navigating back to MeActivity.");
+                    Intent intent = new Intent(getActivity(),MeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             }

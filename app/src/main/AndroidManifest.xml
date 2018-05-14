@@ -26,6 +26,7 @@
         <activity android:name=".utils.FilterActivity"></activity>
         <activity android:name=".login.RegisterActivity"></activity>
         <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".utils.RestaurantActivity"></activity>
 
 
     </application>

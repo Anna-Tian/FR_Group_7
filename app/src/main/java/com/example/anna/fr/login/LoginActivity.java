@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mProgressBar = (ProgressBar) findViewById(R.id.prograssBar);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mPleaseWait = (TextView) findViewById(R.id.pleaseWait);
         mEmail = (EditText) findViewById(R.id.input_email);
         mPassword = (EditText) findViewById(R.id.input_password);
@@ -91,6 +91,12 @@ public class LoginActivity extends AppCompatActivity{
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
+                                        Toast.makeText(LoginActivity.this, "Welcome back! ",Toast.LENGTH_SHORT).show();
+
+                                        // if the user is logged in, then navigate to MeActivity and call 'finish()'
+                                        Intent intent = new Intent(LoginActivity.this, MeActivity.class);
+                                        startActivity(intent);
+                                        finish();
 
                                         mProgressBar.setVisibility(View.GONE);
                                         mPleaseWait.setVisibility(View.GONE);
@@ -120,12 +126,7 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
-        // if the user is logged in, then navigate to MeActivity and call 'finish()'
-        if(mAuth.getCurrentUser() != null){
-            Intent intent = new Intent(LoginActivity.this, MeActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
     }
 
     //set up the firebase auth object
@@ -141,7 +142,7 @@ public class LoginActivity extends AppCompatActivity{
 
                 if (user != null){
                     // user is signed in
-                    Log.d(TAG, "onAuthStateChanged: sined_in: " + user.getUid());
+                    Log.d(TAG, "onAuthStateChanged: signed_in: " + user.getUid());
                 } else {
                     // user is signed out
                     Log.d(TAG, "onAuthStateChanged: signed_out");

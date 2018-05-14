@@ -34,6 +34,7 @@ public class FilterActivity extends AppCompatActivity {
         String[] items= {"Chinese Food","Open Now", "Distance", "rating"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.layout_center_filter, R.id.checkBox, items);
         checkList.setAdapter(adapter);
+
         checkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
