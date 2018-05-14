@@ -64,4 +64,8 @@ public class FilterActivity extends AppCompatActivity {
         }
         Toast.makeText(this, "You have selected \n" + items,Toast.LENGTH_LONG).show();
     }
+
+    public void cancelChangesButton(View view){
+
+    }
 }

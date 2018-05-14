@@ -7,7 +7,11 @@
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
+=======
+            android:layout_height="?android:attr/actionBarSize"
+>>>>>>> 9653fd376366728bcf046ce50e9939dd8a35e25d
             android:id="@+id/randomBar">
 
             <RelativeLayout
