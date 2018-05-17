@@ -25,6 +25,8 @@
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
     <string name="dbname_restaurant_details">restaurant_details</string>
+    <string name="dbname_restaurant_intro">restaurant_intro</string>
+
     <string name="field_username">username</string>
     <string name="field_email">email</string>
     <string name="field_display_name">display_name</string>
@@ -33,6 +35,37 @@
     <string name="field_phone">phone</string>
     <string name="field_restaurant_name">name</string>
     <string name="field_restaurant_id">res_id</string>
+    <string name="country">Country</string>
+    <string name="cuisine">Cuisine</string>
+    <string name="more">More</string>
+    <string name="dialog_title">Items available to filter</string>
+    <string name="ok_label">OK</string>
+    <string name="dismiss_label">DISMISS</string>
+    <string name="clear_all_label">CLEAR ALL</string>
 
+    <string-array name="Country">
+        <item>Chinese</item>
+        <item>Italian</item>
+        <item>Thai</item>
+        <item>Japanese</item>
+        <item>Korean</item>
+    </string-array>
+
+    <string-array name="Cuisine">
+        <item>café</item>
+        <item>bakery</item>
+        <item>burger</item>
+        <item>pizza</item>
+        <item>fast</item>
+    </string-array>
+
+    <string-array name="More">
+        <item>outdoor seat</item>
+        <item>card</item>
+        <item>BYO</item>
+        <item>WIFI</item>
+        <item>Internet</item>
+        <item>Gluten-free</item>
+    </string-array>
 
 </resources>

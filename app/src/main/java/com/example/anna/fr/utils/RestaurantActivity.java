@@ -50,7 +50,6 @@ public class RestaurantActivity extends AppCompatActivity {
 
 
         initWidgets();
-        viewRestaurantDatabase();
     }
 
     private void initWidgets(){
@@ -59,7 +58,7 @@ public class RestaurantActivity extends AppCompatActivity {
         mPhone = (TextView) findViewById(R.id.restaurantPhone);
         mProfilePhoto = (ImageView) findViewById(R.id.restaurantImage);
         mAddress = (TextView) findViewById(R.id.restaurantAddress);
-        mRestaurantRating = (RatingBar) findViewById(R.id.ratingBar);
+//        mRestaurantRating = (RatingBar) findViewById(R.id.ratingBar);
 
         mContext = RestaurantActivity.this;
         RestaurantDetails restaurantDetails = new RestaurantDetails();
@@ -74,28 +73,7 @@ public class RestaurantActivity extends AppCompatActivity {
     -----------Firebase-----------------
      */
 
-    //view the restaurant database
-    private void viewRestaurantDatabase(){
-        Log.d(TAG, "viewRestaurantDatabase: started");
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
 
-
-        myRef.child(mContext.getString(R.string.dbname_restaurant_details))
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                firebaseMethods.viewRestaurantDetails();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
     /*
     -----------Firebase-----------------

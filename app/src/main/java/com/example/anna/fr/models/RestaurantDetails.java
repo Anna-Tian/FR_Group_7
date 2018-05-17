@@ -8,16 +8,14 @@ public class RestaurantDetails {
     private long phone;
     private String category;
     private String address;
-    private long res_rating;
 
-    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address, long res_rating) {
+    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address) {
         this.res_id = res_id;
         this.name = name;
         this.profile_photo = profile_photo;
         this.phone = phone;
         this.category = category;
         this.address = address;
-        this.res_rating = res_rating;
     }
 
     public RestaurantDetails() {
@@ -72,14 +70,6 @@ public class RestaurantDetails {
         this.address = address;
     }
 
-    public long getRes_rating() {
-        return res_rating;
-    }
-
-    public void setRes_rating(long res_rating) {
-        this.res_rating = res_rating;
-    }
-
     @Override
     public String toString() {
         return "RestaurantDetails{" +
@@ -89,7 +79,6 @@ public class RestaurantDetails {
                 ", phone=" + phone +
                 ", category='" + category + '\'' +
                 ", address='" + address + '\'' +
-                ", res_rating=" + res_rating +
                 '}';
     }
 }

@@ -58,7 +58,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
-            android:text="Country" />
+            android:text="@string/country" />
 
         <Button
             android:id="@+id/filer_cuisine_button"
@@ -67,7 +67,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="179dp"
-            android:text="Cuisine" />
+            android:text="@string/cuisine" />
 
         <Button
             android:id="@+id/filter_more_button"
@@ -76,7 +76,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="248dp"
-            android:text="More" />
+            android:text="@string/more" />
 
         <!--<ListView-->
             <!--android:id="@+id/checkableList"-->

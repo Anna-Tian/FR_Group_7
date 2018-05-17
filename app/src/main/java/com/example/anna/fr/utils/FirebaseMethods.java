@@ -236,20 +236,4 @@ public class FirebaseMethods {
         return new UserSettings(user,settings);
     }
 
-
-
-    public void viewRestaurantDetails (){
-        Log.d(TAG, "viewRestaurantDetails: view current restaurant details: " + myRef.child(mContext.getString(R.string.dbname_restaurant_details)).getKey());
-
-        String RestaurantKey = myRef.child(mContext.getString(R.string.dbname_restaurant_details)).getKey();
-        RestaurantDetails restaurantDetails = new RestaurantDetails();
-        restaurantDetails.getName();
-        restaurantDetails.getAddress();
-        restaurantDetails.getProfile_photo();
-        restaurantDetails.getRes_rating();
-        restaurantDetails.getPhone();
-        restaurantDetails.getRes_id();
-        myRef.child(mContext.getString(R.string.dbname_restaurant_details)).child(RestaurantKey).getDatabase();
-
-    }
 }

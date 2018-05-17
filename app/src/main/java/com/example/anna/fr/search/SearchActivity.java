@@ -30,7 +30,6 @@ import com.example.anna.fr.models.RestaurantDetails;
 import com.example.anna.fr.models.RestaurantIntro;
 import com.example.anna.fr.utils.BottomNavigationViewHelper;
 import com.example.anna.fr.utils.FirebaseMethods;
-import com.example.anna.fr.utils.RestaurantListAdapter;
 import com.example.anna.fr.utils.SectionsPagerAdapter;
 import com.example.anna.fr.utils.UniversalImageLoader;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -41,6 +40,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,15 +56,11 @@ public class SearchActivity extends AppCompatActivity{
 
     private Context mContext = SearchActivity.this;
 
-    private EditText mSearchParam;
-    private ListView mResultList;
+    private EditText mSearchField;
+    private RecyclerView mResultList;
     private Button mSearchBtn;
 
-    private List<RestaurantIntro> mRestaurantList;
-    private RestaurantListAdapter mAdapter;
-
     private FirebaseMethods firebaseMethods;
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
 
     @Override
@@ -73,147 +69,68 @@ public class SearchActivity extends AppCompatActivity{
         setContentView(R.layout.activity_search);
         Log.d(TAG,"onCreate: started.");
 
-        mSearchParam = (EditText) findViewById(R.id.searchText);
-        mResultList = (ListView) findViewById(R.id.result_list);
-//        mResultList.setHasFixedSize(true);
-//        mResultList.setLayoutManager(new LinearLayoutManager(this));
+        mResultList = (RecyclerView) findViewById(R.id.result_list);
+        mSearchField = (EditText) findViewById(R.id.searchText);
         mSearchBtn = (Button) findViewById(R.id.searchBtn);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference("restaurant_intro");
+        mResultList.setHasFixedSize(true);
+        mResultList.setLayoutManager(new LinearLayoutManager(this));
+
+
+        myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_intro));
+        myRef.keepSynced(true);
 
         setupBottomNavigationView();
 //        setupViewPager();
-        hideSoftKeyboard();
-        initTextListener();
+
 
         //setup the search button
-//        mSearchBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                firebaseRestaurantSearch();
-//            }
-//        });
-    }
-
-//    private void firebaseRestaurantSearch() {
-//        Log.d(TAG, "firebaseRestaurantSearch: started");
-//        FirebaseRecyclerAdapter<RestaurantIntro, RestaurantViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RestaurantIntro, RestaurantViewHolder>(
-//                RestaurantIntro.class,
-//                R.layout.snippet_center_restaurant_introduction,
-//                RestaurantViewHolder.class,
-//                myRef
-//        ) {
-//            @Override
-//            protected void populateViewHolder(RestaurantViewHolder viewHolder, RestaurantIntro model, int position) {
-//                viewHolder.setDetails(model.getName(), model.getAddress(), model.getProfile_photo());
-//            }
-//        };
-//
-//        mResultList.setAdapter(firebaseRecyclerAdapter);
-//    }
-
-//    public static class RestaurantViewHolder extends RecyclerView.ViewHolder{
-//
-//        View mView;
-//
-//        public RestaurantViewHolder(View itemView) {
-//            super(itemView);
-//        }
-//
-//        public void setDetails(String restaurantName, String restaurantAddress, String restaurantImage){
-//            TextView restaurant_name = (TextView) mView.findViewById(R.id.restaurantName);
-//            TextView restaurant_address = (TextView) mView.findViewById(R.id.restaurantAddress);
-//            ImageView restaurant_image = (ImageView) mView.findViewById(R.id.restaurantImage);
-//
-//            restaurant_name.setText(restaurantName);
-//            restaurant_address.setText(restaurantAddress);
-//
-//            RestaurantDetails restaurantDetails = new RestaurantDetails();
-//            UniversalImageLoader.setImage(restaurantImage,restaurant_image, null, "");
-//
-//        }
-//    }
-
-    private void initTextListener(){
-        Log.d(TAG, "initTextListener: initializing");
-
-        mRestaurantList = new ArrayList<>();
-
-        mSearchParam.addTextChangedListener(new TextWatcher() {
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onClick(View view) {
 
-            }
+                String searchText = mSearchField.getText().toString();
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String text = mSearchParam.getText().toString().toLowerCase(Locale.getDefault());
-                searchForMatch(text);
+                firebaseRestaurantSearch(searchText);
             }
         });
     }
 
-    private void searchForMatch (String keyword){
-        Log.d(TAG, "searchForMatch: searching for a match: " + keyword);
-        mRestaurantList.clear();
+    protected void firebaseRestaurantSearch(String searchText) {
+        Query firebaseSearchQuery = myRef.orderByChild
+                (mContext.getString(R.string.field_restaurant_name)).startAt(searchText).endAt(searchText + "\uf8ff");
 
-        //update the restaurants' list
-        if (keyword.length() == 0){
-
-        }else {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            Query query = reference.child(getString(R.string.dbname_restaurant_details))
-                    .orderByChild(getString(R.string.field_restaurant_name)).equalTo(keyword);
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-                        Log.d(TAG, "onDataChange: found restaurant: ");
-
-                        mRestaurantList.add(singleSnapshot.getValue(RestaurantIntro.class));
-
-                        //update restaurant list view
-                        updateRestaurantList();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
-    }
-
-    private void updateRestaurantList(){
-        Log.d(TAG, "updateRestaurantList: updating restaurant list");
-        mAdapter = new RestaurantListAdapter(SearchActivity.this, R.layout.snippet_center_restaurant_introduction, mRestaurantList);
-
-        mResultList.setAdapter(mAdapter);
-
-        mResultList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        FirebaseRecyclerAdapter<RestaurantIntro, ResViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RestaurantIntro, ResViewHolder>
+                (RestaurantIntro.class, R.layout.snippet_center_restaurant_introduction, ResViewHolder.class, myRef) {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: selected restaurant: " + mRestaurantList.get(position).toString());
-
-                //navigating to restaurant details
+            protected void populateViewHolder(ResViewHolder viewHolder, RestaurantIntro model, int position) {
+                viewHolder.setName(model.getName());
+                viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
+                viewHolder.setAddress(model.getAddress());
             }
-        });
+        };
+        mResultList.setAdapter(firebaseRecyclerAdapter);
     }
 
-    private void hideSoftKeyboard(){
-        if (getCurrentFocus() != null){
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    public static class ResViewHolder extends RecyclerView.ViewHolder{
+        View mView;
+        public ResViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+        }
+        public void setName(String name){
+            TextView res_name = (TextView) mView.findViewById(R.id.restaurantName);
+            res_name.setText(name);
+        }
+        public void setProfile_photo(Context ctx,String profile_photo){
+            ImageView res_image = (ImageView) mView.findViewById(R.id.restaurantImage);
+            Picasso.with(ctx).load(profile_photo).into(res_image);
+        }
+        public void setAddress(String address){
+            TextView res_address = (TextView) mView.findViewById(R.id.restaurantAddress);
+            res_address.setText(address);
         }
     }
-
     //Responsible for adding the tabs: Saved, History
 //    private void setupViewPager () {
 //        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
