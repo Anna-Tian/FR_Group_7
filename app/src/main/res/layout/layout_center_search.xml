@@ -18,49 +18,43 @@
         </RelativeLayout>
 
         <!--Top SearchTabs-->
-        <RelativeLayout
-            android:id="@+id/relLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/relLayout1">
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/relLayout2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_below="@+id/relLayout1">-->
 
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<android.support.design.widget.AppBarLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/searchTabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/white_grey_border_bottom">
+                <!--<android.support.design.widget.TabLayout-->
+                    <!--android:id="@+id/searchTabs"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/white_grey_border_bottom">-->
 
-                </android.support.design.widget.TabLayout>
+                <!--</android.support.design.widget.TabLayout>-->
 
-            </android.support.design.widget.AppBarLayout>
+            <!--</android.support.design.widget.AppBarLayout>-->
 
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
         <!--Middle Section-->
         <RelativeLayout
             android:id="@+id/relLayout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/relLayout2">
+            android:layout_below="@+id/relLayout1">
 
-            <ListView
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/result_list"
                 android:layout_marginTop="10dp">
 
-            </ListView>
-            <android.support.v4.view.ViewPager
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/search_container">
-
-            </android.support.v4.view.ViewPager>
+            </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
 

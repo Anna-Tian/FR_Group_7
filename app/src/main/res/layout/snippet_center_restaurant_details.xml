@@ -1,7 +1,8 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -29,19 +30,19 @@
                 android:textStyle="bold"
                 android:textSize="25sp"/>
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/restaurantName"
-                android:layout_marginTop="5dp"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:layout_centerHorizontal="true"/>
+            <!--<RatingBar-->
+                <!--android:id="@+id/ratingBar"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/restaurantName"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--style="@style/Widget.AppCompat.RatingBar.Indicator"-->
+                <!--android:layout_centerHorizontal="true"/>-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ratingBar"
+                android:layout_below="@+id/restaurantName"
                 android:layout_marginTop="30dp"
                 android:id="@+id/relLayout1">
 
@@ -104,4 +105,3 @@
 
         </RelativeLayout>
     </ScrollView>
-</merge>
