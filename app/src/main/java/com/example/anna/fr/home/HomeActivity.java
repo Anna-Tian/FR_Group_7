@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: starting.");
 
-        mRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_intro));
+        mRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
         mRef.keepSynced(true);
 
         mResList = (RecyclerView) findViewById(R.id.recyclerView);
