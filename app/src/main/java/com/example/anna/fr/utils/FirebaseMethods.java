@@ -133,8 +133,8 @@ public class FirebaseMethods {
                 1,
                 email,
                 StringManipulation.condenseUsername(username),
-                description,
-                address);
+                "",
+                "");
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)

@@ -9,6 +9,7 @@ public class RestaurantDetails {
     private String category;
     private String address;
 
+
     public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address) {
         this.res_id = res_id;
         this.name = name;
