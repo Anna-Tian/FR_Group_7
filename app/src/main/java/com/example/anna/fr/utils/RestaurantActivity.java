@@ -48,6 +48,10 @@ public class RestaurantActivity extends AppCompatActivity {
         firebaseMethods = new FirebaseMethods(mContext);
         Log.d(TAG, "onCreate: start");
 
+        myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
+        myRef.keepSynced(true);
+
+
 
         initWidgets();
     }
