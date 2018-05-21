@@ -58,6 +58,9 @@ public class HomeActivity extends AppCompatActivity {
         setupToolbar();
         setupBottomNavigationView();
 
+
+//        Collections.sort(mRestaurantIntro, RestaurantIntro.ComparatorBy);
+//        Collections.sort(mRestaurantDetails, RestaurantDetails.ComparatorBy);
     }
 
     @Override
