@@ -56,17 +56,20 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     }
 
     @Override
-    public void onBindViewHolder(SearchViewHolder holder, int position) {
+    public void onBindViewHolder(final SearchViewHolder holder, final int position) {
         holder.name.setText( nameList.get( position ) );
         holder.address.setText( addressList.get( position ) );
 
         Picasso.with( context ).load( profile_photoList.get( position )).placeholder( R.mipmap.ic_launcher_round ).into( holder.profileImage );
 
-        holder.name.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Full Name Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mContext, RestaurantActivity.class);//你要跳转的界面
+                intent.putExtra("name",nameList.get(position));
+                intent.putExtra("profilePhoto",profile_photoList.get(position));
+                intent.putExtra("address",addressList.get(position));
                 mContext.startActivity(intent);
             }
         });

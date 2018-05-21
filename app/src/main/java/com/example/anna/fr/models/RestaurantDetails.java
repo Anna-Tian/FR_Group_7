@@ -1,5 +1,10 @@
 package com.example.anna.fr.models;
 
+
+import android.support.v7.widget.CardView;
+
+import com.example.anna.fr.R;
+
 public class RestaurantDetails {
 
     private long res_id;
@@ -8,15 +13,27 @@ public class RestaurantDetails {
     private long phone;
     private String category;
     private String address;
+    private String byo;
+    private String card;
+    private String cuisine;
+    private String outdoor_seat;
+    private long rating;
+    private String wifi;
 
 
-    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address) {
+    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address, String byo, String card, String cuisine, String outdoor_seat, long rating, String wifi) {
         this.res_id = res_id;
         this.name = name;
         this.profile_photo = profile_photo;
         this.phone = phone;
         this.category = category;
         this.address = address;
+        this.byo = byo;
+        this.card = card;
+        this.cuisine = cuisine;
+        this.outdoor_seat = outdoor_seat;
+        this.rating = rating;
+        this.wifi = wifi;
     }
 
     public RestaurantDetails() {
@@ -71,6 +88,55 @@ public class RestaurantDetails {
         this.address = address;
     }
 
+    public String getByo() {
+        return byo;
+    }
+
+    public void setByo(String byo) {
+        this.byo = byo;
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
+
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
+    }
+
+    public String getOutdoor_seat() {
+        return outdoor_seat;
+    }
+
+    public void setOutdoor_seat(String outdoor_seat) {
+        this.outdoor_seat = outdoor_seat;
+    }
+
+    public long getRating() {
+        return rating;
+    }
+
+    public void setRating(long rating) {
+        this.rating = rating;
+    }
+
+    public String getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(String wifi) {
+        this.wifi = wifi;
+    }
+
+
     @Override
     public String toString() {
         return "RestaurantDetails{" +
@@ -80,6 +146,12 @@ public class RestaurantDetails {
                 ", phone=" + phone +
                 ", category='" + category + '\'' +
                 ", address='" + address + '\'' +
+                ", byo='" + byo + '\'' +
+                ", card='" + card + '\'' +
+                ", cuisine='" + cuisine + '\'' +
+                ", outdoor_seat='" + outdoor_seat + '\'' +
+                ", rating='" + rating + '\'' +
+                ", wifi='" + wifi + '\'' +
                 '}';
     }
 }
