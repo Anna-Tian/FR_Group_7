@@ -76,34 +76,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 Toast.makeText( context, "skip page", Toast.LENGTH_SHORT ).show();
 
 
-                if (s.get( position ).equals( "PappaRich" )) {
-                    Intent intent1 = new Intent( mContext, RestaurantDetailsActivity.class );//你要跳转的界面
-                    mContext.startActivity( intent1 );
-
-                } else if (s.get( position ).equals( "Erashai" )) {
-                    Intent intent2 = new Intent( mContext, RestaurantDetails2.class );//你要跳转的界面
-                    mContext.startActivity( intent2 );
-                }
-                else if (s.get( position ).equals( "The Nectar Coffee House" )) {
-                    Intent intent3 = new Intent( mContext, RestaurantDetails3.class );//你要跳转的界面
-                    mContext.startActivity( intent3 );
-                }
-                else if (s.get( position ).equals( "Sunflower Taiwanese Gourmet" )) {
-                    Intent intent4 = new Intent( mContext, RestaurantDetails4.class );//你要跳转的界面
-                    mContext.startActivity( intent4 );
-                }
-                else if (s.get( position ).equals( "Jumbo Thai" )) {
-                    Intent intent5 = new Intent( mContext, RestaurantDetails5.class );//你要跳转的界面
-                    mContext.startActivity( intent5 );
-                }
-                else if (s.get( position ).equals( "Lotus Story" )) {
-                    Intent intent6 = new Intent( mContext, RestaurantDetails6.class );//你要跳转的界面
-                    mContext.startActivity( intent6 );
-                }
-                else if (s.get( position ).equals( "Oliver Brown" )) {
-                    Intent intent7 = new Intent( mContext, RestaurantDetails7.class );//你要跳转的界面
-                    mContext.startActivity( intent7 );
-                }
 
 
 

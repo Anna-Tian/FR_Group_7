@@ -27,13 +27,6 @@
         <activity android:name=".login.RegisterActivity"></activity>
         <activity android:name=".login.LoginActivity"></activity>
         <activity android:name=".utils.RestaurantActivity"></activity>
-        <activity android:name=".utils.RestaurantDetailsActivity"></activity>
-        <activity android:name=".utils.RestaurantDetails2"></activity>
-        <activity android:name=".utils.RestaurantDetails3"></activity>
-        <activity android:name=".utils.RestaurantDetails4"></activity>
-        <activity android:name=".utils.RestaurantDetails5"></activity>
-        <activity android:name=".utils.RestaurantDetails6"></activity>
-        <activity android:name=".utils.RestaurantDetails7"></activity>
 
 
     </application>
