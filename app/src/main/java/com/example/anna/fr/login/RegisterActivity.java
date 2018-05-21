@@ -1,6 +1,7 @@
 package com.example.anna.fr.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anna.fr.R;
+import com.example.anna.fr.home.HomeActivity;
+import com.example.anna.fr.me.MeActivity;
+import com.example.anna.fr.me.MeFragment;
 import com.example.anna.fr.models.User;
 import com.example.anna.fr.utils.FirebaseMethods;
 import com.google.firebase.auth.FirebaseAuth;
@@ -140,9 +144,11 @@ public class RegisterActivity extends AppCompatActivity{
                 mUsername = username + append;
 
                 //add new user to the database
-                firebaseMethods.addNewUser(email,mUsername, description,profile_photo,address);
+                firebaseMethods.addNewUser(email,mUsername);
                 Toast.makeText(mContext,"Welcome! " + username, Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -184,6 +190,7 @@ public class RegisterActivity extends AppCompatActivity{
                 } else {
                     // user is signed out
                     Log.d(TAG, "onAuthStateChanged: signed_out");
+
                 }
             }
         };

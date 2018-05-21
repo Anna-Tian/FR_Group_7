@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.example.anna.fr.R;
 import com.example.anna.fr.utils.BottomNavigationViewHelper;
@@ -22,6 +24,9 @@ public class RandomActivity extends AppCompatActivity{
 
     private Context mContext = RandomActivity.this;
 
+    private TextView textRating;
+    private  RatingBar ratingBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +36,19 @@ public class RandomActivity extends AppCompatActivity{
 
 
         setupBottomNavigationView();
+
+
+
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
+        textRating = (TextView) findViewById(R.id.ratingText1);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                textRating.setText("Rating:" + rating);
+            }
+        });
     }
 
     private void setupBottomNavigationView() {
@@ -42,6 +60,8 @@ public class RandomActivity extends AppCompatActivity{
         menuItem.setChecked(true);
 
     }
+
+    //testing
 }
 
 

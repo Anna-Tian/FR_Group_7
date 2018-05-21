@@ -3,7 +3,6 @@ package com.example.anna.fr.me;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,17 +12,18 @@ import android.widget.ImageView;
 
 import com.example.anna.fr.R;
 
-/**
- * Created by anna on 17/4/18.
- */
+public class ReviewFragment extends Fragment{
+    private static final String TAG = "ReviewFragment";
 
-public class PasswordFragment extends Fragment {
-    private static final String TAG = "PasswordFragment";
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile_password, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile_review, container, false);
         ImageView btnBackArrow = (ImageView) view.findViewById(R.id.backArrow);
 
         btnBackArrow.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +34,7 @@ public class PasswordFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
     }
 }

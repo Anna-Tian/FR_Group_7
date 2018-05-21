@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -37,7 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MeFragment extends Fragment{
+public class MeFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "MeFragment";
     private static final int ACTIVITY_NUM = 3;
     private Context mContext;
@@ -48,7 +49,9 @@ public class MeFragment extends Fragment{
     private CircleImageView mProfilePhoto;
     private Toolbar toolbar;
     private ImageView profileMenu;
+    private Button btnFavourite, btnHistory, btnReview, btnHelp;
     private BottomNavigationView bottomNavigationView;
+    private IMeActivity mIMeActivity;
 
     //firebase
     private FirebaseAuth mAuth;
@@ -70,6 +73,10 @@ public class MeFragment extends Fragment{
         mContext = getActivity();
         mFirebaseMethods = new FirebaseMethods(getActivity());
         mProgressBar.setVisibility(View.GONE);
+        btnFavourite = (Button) view.findViewById(R.id.buttonFavourite);
+        btnHistory = (Button) view.findViewById(R.id.buttonHistory);
+        btnReview = (Button) view.findViewById(R.id.buttonReview);
+        btnHelp = (Button) view.findViewById(R.id.buttonHelp);
 
         Log.d(TAG, "onCreateView: started");
 
@@ -88,11 +95,44 @@ public class MeFragment extends Fragment{
             }
         });
 
+        btnFavourite.setOnClickListener(this);
+        btnHistory.setOnClickListener(this);
+        btnReview.setOnClickListener(this);
+        btnHelp.setOnClickListener(this);
+
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buttonFavourite:{
+                mIMeActivity.inflateFragment(getString(R.string.favourite_fragment));
+                break;
+            }
+            case R.id.buttonHistory:{
+                mIMeActivity.inflateFragment(getString(R.string.history_fragment));
+                break;
+            }
+            case R.id.buttonReview:{
+                mIMeActivity.inflateFragment(getString(R.string.review_fragment));
+                break;
+            }
+            case R.id.buttonHelp:{
+                mIMeActivity.inflateFragment(getString(R.string.help_fragment));
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mIMeActivity = (IMeActivity) getActivity();
+    }
+
     private void setProfileWidgets(UserSettings userSettings){
-        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: "+ userSettings.toString());
+        Log.d(TAG, "setProfileWidgets: "+ userSettings.toString());
 //        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: "+ userSettings.getSettings().getDisplay_name());
 
         //User user = userSettings.getUser();
@@ -103,7 +143,7 @@ public class MeFragment extends Fragment{
 
     }
 
-    //transfer to new page
+    //transfer to AccountSettingActivity page
     private void setupToolbar(){
         ((MeActivity)getActivity()).setSupportActionBar(toolbar);
         profileMenu.setOnClickListener(new View.OnClickListener(){
@@ -189,7 +229,6 @@ public class MeFragment extends Fragment{
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
     /*
     -----------Firebase-----------------
      */

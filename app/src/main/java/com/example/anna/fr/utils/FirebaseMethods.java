@@ -1,11 +1,14 @@
 package com.example.anna.fr.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.anna.fr.R;
+import com.example.anna.fr.login.LoginActivity;
+import com.example.anna.fr.login.RegisterActivity;
 import com.example.anna.fr.models.RestaurantDetails;
 import com.example.anna.fr.models.User;
 import com.example.anna.fr.models.UserAccountSettings;
@@ -115,6 +118,7 @@ public class FirebaseMethods {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            Toast.makeText(mContext, "Register success. ",Toast.LENGTH_SHORT).show();
                             userID = mAuth.getCurrentUser().getUid();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -126,11 +130,10 @@ public class FirebaseMethods {
                 });
     }
 
-    public void addNewUser (String email, String username,
-                            String description, String profile_photo, String address){
+    public void addNewUser (String email, String username){
         User user = new User(
                 userID,
-                1,
+                04,
                 email,
                 StringManipulation.condenseUsername(username),
                 "",
@@ -142,7 +145,7 @@ public class FirebaseMethods {
 
         UserAccountSettings settings = new UserAccountSettings(
                 username,
-                profile_photo,
+                "https://pbs.twimg.com/profile_images/875443327835025408/ZvmtaSXW_400x400.jpg",
                 StringManipulation.condenseUsername(username));
 
         myRef.child(mContext.getString(R.string.dbname_user_account_settings))
