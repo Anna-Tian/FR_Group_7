@@ -1,5 +1,6 @@
 package com.example.anna.fr.me;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -102,6 +103,7 @@ public class EditProfileFragment extends Fragment implements
     }
 
     private static final String TAG = "EditProfileFragment";
+    private Context mContext;
 
     //editprofile fragment widgets
     private EditText mUsername, mDisplayname, mAddress, mDescription, mPhone, mEmail;
@@ -154,6 +156,9 @@ public class EditProfileFragment extends Fragment implements
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to save changes.");
                 saveProfileSettings();
+                Intent intent = new Intent(getActivity(), MeActivity.class);
+                startActivity(intent);
+                Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -202,7 +207,7 @@ public class EditProfileFragment extends Fragment implements
         if (!mUserSettings.getUser().getDescription().equals(description)){
             mFirebaseMethods.updateUserSettings(null, null, description, 0);
         }
-        if (!mUserSettings.getSettings().getProfile_photo().equals(phone)){
+        if (!mUserSettings.getUser().getDescription().equals(phone)){
             mFirebaseMethods.updateUserSettings(null, null, null, phone);
         }
     }

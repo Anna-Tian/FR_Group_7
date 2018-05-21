@@ -39,6 +39,7 @@ public class SignOutFragment extends Fragment {
         tvSignout =(TextView) view.findViewById(R.id.tvConfirmSignout);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         Button btnConfirmSignOut = (Button) view.findViewById(R.id.btnConfirmSignout);
+        Button btnCancelSignOut = (Button) view.findViewById(R.id.btnCancelSignout);
         tvSigningOut = (TextView) view.findViewById(R.id.tvSigningOut);
 
         mProgressBar.setVisibility(View.GONE);
@@ -52,6 +53,14 @@ public class SignOutFragment extends Fragment {
                 tvSigningOut.setVisibility(View.VISIBLE);
 
                 mAuth.signOut();
+                getActivity().finish();
+            }
+        });
+
+        btnCancelSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating back to 'AccountSettingActivity'");
                 getActivity().finish();
             }
         });

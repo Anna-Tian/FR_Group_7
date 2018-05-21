@@ -9,6 +9,11 @@
     <string name="push_notification">Push Notification</string>
     <string name="sign_out_fragment">Sign Out</string>
     <string name="me_fragment">Me</string>
+    <string name="favourite_fragment">Favourite</string>
+    <string name="history_fragment">History</string>
+    <string name="review_fragment">Review</string>
+    <string name="help_fragment">Help</string>
+
 
     <!--dialog names -->
     <string name="confirm_password_dialog">ConfirmPasswordDialog</string>

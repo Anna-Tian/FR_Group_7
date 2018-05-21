@@ -121,7 +121,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/grey_border"
-                    android:text="Help/Contact"
+                    android:text="Help / Contact"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textStyle="bold"
