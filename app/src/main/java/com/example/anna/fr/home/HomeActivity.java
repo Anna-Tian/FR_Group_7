@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.anna.fr.R;
@@ -26,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Picasso;
+
+import java.util.Collections;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -67,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
                 viewHolder.setName(model.getName());
                 viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
                 viewHolder.setAddress(model.getAddress());
+                viewHolder.setRating(model.getRating());
             }
         };
         mResList.setAdapter(firebaseRecyclerAdapter);
@@ -89,6 +93,12 @@ public class HomeActivity extends AppCompatActivity {
         public void setAddress(String address){
             TextView res_address = (TextView) mView.findViewById(R.id.restaurantAddress);
             res_address.setText(address);
+        }
+        public void setRating(int rating){
+            TextView ratingBarT = (TextView) mView.findViewById(R.id.ratingBarText);
+            ratingBarT.setText(rating+"");
+           RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.ratingBar);
+           ratingBar.setRating(rating);
         }
     }
 

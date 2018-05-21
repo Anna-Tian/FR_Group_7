@@ -42,13 +42,24 @@
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/restaurantName" />
+                android:layout_below="@id/restaurantName"
+                android:stepSize="1"
+                android:rating="1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_toRightOf="@id/ratingBar"
                 android:layout_below="@id/restaurantName"
+                android:layout_marginTop="5dp"
+                android:text="0 Reviews"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/ratingBarText"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_toRightOf="@id/ratingBar"
+                android:layout_below="@id/ratingBar"
                 android:layout_marginTop="5dp"
                 android:text="0 Reviews"
                 android:textSize="14sp" />

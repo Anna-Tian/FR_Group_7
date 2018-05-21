@@ -1,5 +1,7 @@
 package com.example.anna.fr.models;
 
+import java.util.Comparator;
+
 public class RestaurantDetails {
 
     private long res_id;
@@ -8,21 +10,36 @@ public class RestaurantDetails {
     private long phone;
     private String category;
     private String address;
+    private int rating;
 
 
-    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address) {
+    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address,int rating) {
         this.res_id = res_id;
         this.name = name;
         this.profile_photo = profile_photo;
         this.phone = phone;
         this.category = category;
         this.address = address;
+        this.rating=rating;
     }
 
     public RestaurantDetails() {
 
     }
 
+
+    public static final Comparator<RestaurantDetails> ComparatorBy = new Comparator<RestaurantDetails>() {
+        @Override
+        public int compare(RestaurantDetails o1, RestaurantDetails o2) {
+            if (o1.getRating() > o2.getRating()){
+                return -1;}
+            else if (o1.getRating() < o2.getRating()){
+                return 1;}
+            else{
+                return 0;}
+
+        }
+    };
     public String getCategory() {
         return category;
     }
@@ -80,6 +97,15 @@ public class RestaurantDetails {
                 ", phone=" + phone +
                 ", category='" + category + '\'' +
                 ", address='" + address + '\'' +
+                ", rating='" + rating + '\'' +
                 '}';
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

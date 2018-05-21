@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.anna.fr.R;
+import com.example.anna.fr.models.Restaurant;
 import com.example.anna.fr.models.RestaurantDetails;
 import com.example.anna.fr.models.RestaurantIntro;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +25,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
@@ -43,11 +47,15 @@ public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutResource = resource;
         this.mRestaurantIntro = objects;
+
+        Collections.sort(mRestaurantIntro, RestaurantIntro.ComparatorBy);
+        Collections.sort(mRestaurantDetails, RestaurantDetails.ComparatorBy);
     }
 
     private static class ViewHolder{
-        TextView restaurantName, restaurantAddress;
+        TextView restaurantName, restaurantAddress,ratingBarText;
         ImageView restaurantImage;
+        RatingBar ratingBar;
     }
 
     @NonNull
@@ -64,6 +72,8 @@ public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
             holder.restaurantName = (TextView) convertView.findViewById(R.id.restaurantName);
             holder.restaurantAddress = (TextView) convertView.findViewById(R.id.restaurantAddress);
             holder.restaurantImage = (ImageView) convertView.findViewById(R.id.restaurantImage);
+            holder.ratingBarText=(TextView) convertView.findViewById(R.id.ratingBarText);
+            holder.ratingBar=(RatingBar)convertView.findViewById(R.id.ratingBar) ;
 
             convertView.setTag(holder);
         }else {
@@ -73,6 +83,12 @@ public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
         Log.d(TAG, "getView: test 4");
         holder.restaurantName.setText(mRestaurantIntro.get(position).getName());
         holder.restaurantAddress.setText(getItem(position).getAddress());
+        holder.ratingBarText.setText((int)getItem(position).getRating());
+
+
+
+
+
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child(mContext.getString(R.string.dbname_restaurant_details))
