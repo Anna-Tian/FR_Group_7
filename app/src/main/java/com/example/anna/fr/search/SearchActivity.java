@@ -1,6 +1,8 @@
 package com.example.anna.fr.search;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,6 +34,7 @@ import com.example.anna.fr.models.RestaurantDetails;
 import com.example.anna.fr.models.RestaurantIntro;
 import com.example.anna.fr.utils.BottomNavigationViewHelper;
 import com.example.anna.fr.utils.FirebaseMethods;
+import com.example.anna.fr.utils.RestaurantDetailsActivity;
 import com.example.anna.fr.utils.RestaurantListAdapter;
 import com.example.anna.fr.utils.SearchAdapter;
 import com.example.anna.fr.utils.SectionsPagerAdapter;
@@ -104,6 +107,9 @@ public class SearchActivity extends AppCompatActivity{
         addressList = new ArrayList<>();
         profile_photoList = new ArrayList<>();
 
+
+
+
         search_edit_text.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -131,7 +137,10 @@ public class SearchActivity extends AppCompatActivity{
             }
         } );
         setupBottomNavigationView();
+
     }
+
+
 
     private void setAdapter(final String searchedString){
 
@@ -352,5 +361,7 @@ public class SearchActivity extends AppCompatActivity{
         menuItem.setChecked(true);
 
     }
+
+
 
 }
