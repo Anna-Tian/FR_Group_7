@@ -36,6 +36,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
 
     private Context mContext;
+    private String test;
     private String name, address, profile_photo;
     private long phone;
     private int rating;
@@ -48,6 +49,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    DatabaseReference databaseReference;
 
 
     @Override
@@ -56,6 +58,7 @@ public class RestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_details);
         mContext = RestaurantActivity.this;
         firebaseMethods = new FirebaseMethods(mContext);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         Log.d(TAG, "onCreate: start");
 
         myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
@@ -91,11 +94,12 @@ public class RestaurantActivity extends AppCompatActivity {
             String rPhone = getIntent().getStringExtra("phone");
             int  rRating=getIntent().getIntExtra("rating",rating);
 
-            setRestaurant(rName,rAddress,rPhone,rProfilePhoto,rRating,getApplicationContext());
+//            setRestaurant(rName,rAddress,rPhone,rProfilePhoto,rRating,getApplicationContext(),rTest);
+            showData(rName,rAddress,getApplicationContext());
         }
     }
 
-    private void setRestaurant(String rName,String rAddress, String rPhone,String rProfilePhoto,int rRating, Context ctx ){
+    private void setRestaurant(String rName,String rAddress, String rPhone,String rProfilePhoto,int rRating, Context ctx, String rTest ){
         Log.d(TAG, "setRestaurant: setting profile photo name and address");
 
         TextView name = (TextView) findViewById(R.id.restaurantName);
@@ -115,6 +119,46 @@ public class RestaurantActivity extends AppCompatActivity {
 
     }
 
+    private void showData(final String rName, final String rAddress, final Context ctx){
+        databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    String name = ds.child("name").getValue(String.class);
+                    Log.d(TAG, "onDataChange: test " + name+" "+rName + " ++++++");
+
+                    String address = ds.child("address").getValue(String.class);
+                    Log.d(TAG, "onDataChange: test "+address+" "+rAddress+"++++++");
+                    if(areSame(rName,name)&&areSame(rAddress,address)){
+                        Log.d(TAG, "setRestaurant: setting profile photo name and address");
+
+                        TextView dName = (TextView) findViewById(R.id.restaurantName);
+                        dName.setText(ds.child("name").getValue(String.class));
+
+                        TextView dAddress =(TextView) findViewById(R.id.restaurantAddress);
+                        dAddress.setText(ds.child("address").getValue(String.class));
+
+                        TextView dPhone = findViewById(R.id.restaurantPhone);
+                        dPhone.setText(ds.child("phone").getValue(String.class));
+
+                        ImageView dProfilePhoto =(ImageView) findViewById(R.id.restaurantImage);
+                        Picasso.with(ctx).load(ds.child("profile_photo").getValue(String.class)).into(dProfilePhoto);
+
+                        RatingBar dRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+                        dRatingBar.setRating(ds.child("rating").getValue(float.class));
+                    } else {
+                        Log.d(TAG, "onDataChange: no restaurant found *****");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     private void initWidgets(){
         Log.d(TAG, "intWidgets: Initializing Widgets.");
@@ -131,6 +175,8 @@ public class RestaurantActivity extends AppCompatActivity {
         address = mAddress.getText().toString();
         phone  = mPhone.getText().length();
         rating=mRating.getTextAlignment();
+
+        Log.d(TAG, "initWidgets: ++++++");
 
     }
 
@@ -164,6 +210,10 @@ public class RestaurantActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
 
+    }
+
+    private boolean areSame(String string1, String string2){
+        return string1.equals(string2);
     }
 
     /*

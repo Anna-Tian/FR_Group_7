@@ -99,7 +99,7 @@ public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
                     Log.d(TAG, "onDataChange: found restaurant: " +
-                            singleSnapshot.getValue(RestaurantIntro.class).toString());
+                            singleSnapshot.getValue(RestaurantDetails.class).toString());
 
                     ImageLoader imageLoader = ImageLoader.getInstance();
                     imageLoader.displayImage(singleSnapshot.getValue(RestaurantIntro.class).getProfile_photo(), holder.restaurantImage);
