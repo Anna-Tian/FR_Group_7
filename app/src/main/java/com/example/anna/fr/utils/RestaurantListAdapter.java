@@ -48,8 +48,8 @@ public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
         layoutResource = resource;
         this.mRestaurantIntro = objects;
 
-        Collections.sort(mRestaurantIntro, RestaurantIntro.ComparatorBy);
-        Collections.sort(mRestaurantDetails, RestaurantDetails.ComparatorBy);
+//        Collections.sort(mRestaurantIntro, RestaurantIntro.ComparatorBy);
+//        Collections.sort(mRestaurantDetails, RestaurantDetails.ComparatorBy);
     }
 
     private static class ViewHolder{
@@ -83,7 +83,7 @@ public class RestaurantListAdapter extends ArrayAdapter<RestaurantIntro>{
         Log.d(TAG, "getView: test 4");
         holder.restaurantName.setText(mRestaurantIntro.get(position).getName());
         holder.restaurantAddress.setText(getItem(position).getAddress());
-        holder.ratingBarText.setText((int)getItem(position).getRating());
+//        holder.ratingBarText.setText((int)getItem(position).getRating());
 
 
 

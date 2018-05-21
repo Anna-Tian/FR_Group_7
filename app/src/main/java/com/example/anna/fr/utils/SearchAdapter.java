@@ -27,6 +27,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     ArrayList<String> addressList;
      ArrayList<String> profile_photoList;
 
+
     class SearchViewHolder extends RecyclerView.ViewHolder{
         ImageView profileImage;
         TextView name, address;
