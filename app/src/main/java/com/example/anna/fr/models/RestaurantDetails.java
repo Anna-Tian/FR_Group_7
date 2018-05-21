@@ -7,10 +7,10 @@ import com.example.anna.fr.R;
 
 public class RestaurantDetails {
 
-    private long res_id;
+    private String res_id;
     private String name;
     private String profile_photo;
-    private long phone;
+    private String phone;
     private String category;
     private String address;
     private String byo;
@@ -21,7 +21,7 @@ public class RestaurantDetails {
     private String wifi;
 
 
-    public RestaurantDetails(long res_id, String name, String profile_photo, long phone, String category, String address, String byo, String card, String cuisine, String outdoor_seat, long rating, String wifi) {
+    public RestaurantDetails( String name, String profile_photo, String phone,String res_id, String category, String address, String byo, String card, String cuisine, String outdoor_seat, long rating, String wifi) {
         this.res_id = res_id;
         this.name = name;
         this.profile_photo = profile_photo;
@@ -64,19 +64,19 @@ public class RestaurantDetails {
         this.name = name;
     }
 
-    public long getRes_id() {
+    public String getRes_id() {
         return res_id;
     }
 
-    public void setRes_id(long res_id) {
+    public void setRes_id(String res_id) {
         this.res_id = res_id;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -140,10 +140,10 @@ public class RestaurantDetails {
     @Override
     public String toString() {
         return "RestaurantDetails{" +
-                "res_id=" + res_id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", profile_photo='" + profile_photo + '\'' +
                 ", phone=" + phone +
+                ", res_id=" + res_id +
                 ", category='" + category + '\'' +
                 ", address='" + address + '\'' +
                 ", byo='" + byo + '\'' +

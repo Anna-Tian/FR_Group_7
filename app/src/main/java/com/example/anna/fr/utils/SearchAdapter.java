@@ -70,6 +70,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 intent.putExtra("name",nameList.get(position));
                 intent.putExtra("profilePhoto",profile_photoList.get(position));
                 intent.putExtra("address",addressList.get(position));
+//                intent.putExtra("phone",model.getPhone());
                 mContext.startActivity(intent);
             }
         });

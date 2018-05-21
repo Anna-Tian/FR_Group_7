@@ -80,19 +80,19 @@ public class RestaurantActivity extends AppCompatActivity {
     private void getIncomingIntent() {
         Log.d(TAG, "getIncomingIntent: check for incoming intent");
 
-        if(getIntent().hasExtra("name")&&getIntent().hasExtra("profilePhoto")&&getIntent().hasExtra("address")/*&&getIntent().hasExtra("phone")*/){
+        if(getIntent().hasExtra("name")&&getIntent().hasExtra("profilePhoto")&&getIntent().hasExtra("address")&&getIntent().hasExtra("phone")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
 
             String rName = getIntent().getStringExtra("name");
             String rProfilePhoto = getIntent().getStringExtra("profilePhoto");
             String rAddress = getIntent().getStringExtra("address");
-//            String rPhone = getIntent().getStringExtra("phone");
+            String rPhone = getIntent().getStringExtra("phone");
 
-            setRestaurant(rName,rAddress,/*rPhone,*/rProfilePhoto,getApplicationContext());
+            setRestaurant(rName,rAddress,rPhone,rProfilePhoto,getApplicationContext());
         }
     }
 
-    private void setRestaurant(String rName,String rAddress,/* String rPhone,*/String rProfilePhoto, Context ctx ){
+    private void setRestaurant(String rName,String rAddress, String rPhone,String rProfilePhoto, Context ctx ){
         Log.d(TAG, "setRestaurant: setting profile photo name and address");
 
         TextView name = (TextView) findViewById(R.id.restaurantName);
@@ -101,8 +101,8 @@ public class RestaurantActivity extends AppCompatActivity {
         TextView address =(TextView) findViewById(R.id.restaurantAddress);
         address.setText(rAddress);
 
-//        TextView phone = findViewById(R.id.restaurantPhone);
-//        phone.setText(rPhone);
+        TextView phone = findViewById(R.id.restaurantPhone);
+        phone.setText(rPhone);
 
         ImageView profilePhoto =(ImageView) findViewById(R.id.restaurantImage);
         Picasso.with(ctx).load(rProfilePhoto).into(profilePhoto);

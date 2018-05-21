@@ -67,10 +67,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<RestaurantIntro, ResViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RestaurantIntro, ResViewHolder>
-                (RestaurantIntro.class, R.layout.snippet_center_restaurant_introduction, ResViewHolder.class, mRef) {
+        FirebaseRecyclerAdapter<RestaurantDetails, ResViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RestaurantDetails, ResViewHolder>
+                (RestaurantDetails.class, R.layout.snippet_center_restaurant_introduction, ResViewHolder.class, mRef) {
             @Override
-            protected void populateViewHolder(ResViewHolder viewHolder, final RestaurantIntro model, int position) {
+            protected void populateViewHolder(ResViewHolder viewHolder, final RestaurantDetails model, int position) {
                 viewHolder.setName(model.getName());
                 viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
                 viewHolder.setAddress(model.getAddress());
@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent.putExtra("name",model.getName());
                         intent.putExtra("profilePhoto",model.getProfile_photo());
                         intent.putExtra("address",model.getAddress());
-//                        intent.putExtra("phone",model.getPhone());
+                        intent.putExtra("phone",model.getPhone());
 
                         startActivity(intent);
                     }
