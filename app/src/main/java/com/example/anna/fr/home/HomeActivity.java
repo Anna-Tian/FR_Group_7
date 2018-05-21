@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +74,8 @@ public class HomeActivity extends AppCompatActivity {
                 viewHolder.setName(model.getName());
                 viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
                 viewHolder.setAddress(model.getAddress());
+                viewHolder.setRating((int) model.getRating());
+
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -83,6 +86,7 @@ public class HomeActivity extends AppCompatActivity {
                         intent.putExtra("profilePhoto",model.getProfile_photo());
                         intent.putExtra("address",model.getAddress());
                         intent.putExtra("phone",model.getPhone());
+                        intent.putExtra("rating",model.getRating());
 
                         startActivity(intent);
                     }
@@ -110,6 +114,13 @@ public class HomeActivity extends AppCompatActivity {
             TextView res_address = (TextView) mView.findViewById(R.id.restaurantAddress);
             res_address.setText(address);
         }
+
+        public void setRating(int rating){
+                       TextView ratingBarT = (TextView) mView.findViewById(R.id.ratingBarText);
+                       ratingBarT.setText(rating+"");
+                      RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.ratingBar);
+                      ratingBar.setRating(rating);
+                   }
     }
 
     private void initImageLoader(){

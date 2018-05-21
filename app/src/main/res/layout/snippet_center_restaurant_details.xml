@@ -37,7 +37,9 @@
                 android:layout_below="@+id/restaurantName"
                 android:layout_marginTop="5dp"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:stepSize="1"
+                android:rating="1"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

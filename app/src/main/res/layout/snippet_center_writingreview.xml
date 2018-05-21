@@ -49,11 +49,13 @@
             android:layout_below="@+id/relLayout1">
 
             <RatingBar
-                android:id="@+id/ratingBar"
+                android:id="@+id/ratingBarWrite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                style="@style/Base.Widget.AppCompat.RatingBar.Indicator"/>
+                style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
+                android:stepSize="1"
+                android:rating="1"/>
         </RelativeLayout>
 
         <RelativeLayout

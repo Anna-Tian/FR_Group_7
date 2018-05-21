@@ -8,11 +8,13 @@ public class RestaurantIntro {
     private String name;
     private String profile_photo;
     private String address;
+    private int rating;
 
-    public RestaurantIntro(String name, String profile_photo, String address) {
+    public RestaurantIntro(String name, String profile_photo, String address,int rating) {
         this.name = name;
         this.profile_photo = profile_photo;
         this.address = address;
+        this.rating=rating;
     }
 
     public RestaurantIntro() {
@@ -50,5 +52,13 @@ public class RestaurantIntro {
                 ", profile_photo='" + profile_photo + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

@@ -38,9 +38,10 @@ public class RestaurantActivity extends AppCompatActivity {
     private Context mContext;
     private String name, address, profile_photo;
     private long phone;
+    private int rating;
     private TextView mPhone, mName, mAddress;
     private ImageView mProfilePhoto;
-    private RatingBar mRestaurantRating;
+    private RatingBar mRating;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -81,19 +82,20 @@ public class RestaurantActivity extends AppCompatActivity {
     private void getIncomingIntent() {
         Log.d(TAG, "getIncomingIntent: check for incoming intent");
 
-        if(getIntent().hasExtra("name")&&getIntent().hasExtra("profilePhoto")&&getIntent().hasExtra("address")&&getIntent().hasExtra("phone")){
+        if(getIntent().hasExtra("name")&&getIntent().hasExtra("profilePhoto")&&getIntent().hasExtra("address")&&getIntent().hasExtra("phone")&&getIntent().hasExtra("rating")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
 
             String rName = getIntent().getStringExtra("name");
             String rProfilePhoto = getIntent().getStringExtra("profilePhoto");
             String rAddress = getIntent().getStringExtra("address");
             String rPhone = getIntent().getStringExtra("phone");
+            int  rRating=getIntent().getIntExtra("rating",rating);
 
-            setRestaurant(rName,rAddress,rPhone,rProfilePhoto,getApplicationContext());
+            setRestaurant(rName,rAddress,rPhone,rProfilePhoto,rRating,getApplicationContext());
         }
     }
 
-    private void setRestaurant(String rName,String rAddress, String rPhone,String rProfilePhoto, Context ctx ){
+    private void setRestaurant(String rName,String rAddress, String rPhone,String rProfilePhoto,int rRating, Context ctx ){
         Log.d(TAG, "setRestaurant: setting profile photo name and address");
 
         TextView name = (TextView) findViewById(R.id.restaurantName);
@@ -107,6 +109,10 @@ public class RestaurantActivity extends AppCompatActivity {
 
         ImageView profilePhoto =(ImageView) findViewById(R.id.restaurantImage);
         Picasso.with(ctx).load(rProfilePhoto).into(profilePhoto);
+
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar.setRating(rRating);
+
     }
 
 
@@ -116,7 +122,7 @@ public class RestaurantActivity extends AppCompatActivity {
         mPhone = (TextView) findViewById(R.id.restaurantPhone);
         mProfilePhoto = (ImageView) findViewById(R.id.restaurantImage);
         mAddress = (TextView) findViewById(R.id.restaurantAddress);
-//        mRestaurantRating = (RatingBar) findViewById(R.id.ratingBar);
+        mRating = (RatingBar) findViewById(R.id.ratingBar);
 
         mContext = RestaurantActivity.this;
         RestaurantDetails restaurantDetails = new RestaurantDetails();
@@ -124,6 +130,7 @@ public class RestaurantActivity extends AppCompatActivity {
         name = mName.getText().toString();
         address = mAddress.getText().toString();
         phone  = mPhone.getText().length();
+        rating=mRating.getTextAlignment();
 
     }
 
