@@ -1,5 +1,9 @@
 package com.example.anna.fr.models;
 
+import android.support.v7.widget.CardView;
+
+import com.example.anna.fr.R;
+
 public class RestaurantIntro {
     private String name;
     private String profile_photo;
@@ -47,4 +51,6 @@ public class RestaurantIntro {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+
 }

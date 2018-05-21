@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,12 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anna.fr.R;
 import com.example.anna.fr.models.RestaurantDetails;
 import com.example.anna.fr.models.RestaurantIntro;
 import com.example.anna.fr.utils.BottomNavigationViewHelper;
 import com.example.anna.fr.utils.FilterActivity;
+import com.example.anna.fr.utils.RestaurantActivity;
 import com.example.anna.fr.utils.UniversalImageLoader;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -54,8 +57,12 @@ public class HomeActivity extends AppCompatActivity {
         initImageLoader();
         setupToolbar();
         setupBottomNavigationView();
+//        setUpRestaurantDetail();
+
 
     }
+
+
 
     @Override
     protected void onStart() {
@@ -63,10 +70,24 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<RestaurantIntro, ResViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RestaurantIntro, ResViewHolder>
                 (RestaurantIntro.class, R.layout.snippet_center_restaurant_introduction, ResViewHolder.class, mRef) {
             @Override
-            protected void populateViewHolder(ResViewHolder viewHolder, RestaurantIntro model, int position) {
+            protected void populateViewHolder(ResViewHolder viewHolder, final RestaurantIntro model, int position) {
                 viewHolder.setName(model.getName());
                 viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
                 viewHolder.setAddress(model.getAddress());
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(mContext, model.getName(), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(mContext,RestaurantActivity.class);
+                        intent.putExtra("name",model.getName());
+                        intent.putExtra("profilePhoto",model.getProfile_photo());
+                        intent.putExtra("address",model.getAddress());
+//                        intent.putExtra("phone",model.getPhone());
+
+                        startActivity(intent);
+                    }
+                });
             }
         };
         mResList.setAdapter(firebaseRecyclerAdapter);
@@ -123,5 +144,6 @@ public class HomeActivity extends AppCompatActivity {
         menuItem.setChecked(true);
 
     }
+
 
 }
