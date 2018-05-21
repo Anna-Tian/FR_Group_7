@@ -48,12 +48,12 @@
             android:id="@+id/relLayout2"
             android:layout_below="@+id/relLayout1">
 
-            <!--<RatingBar-->
-                <!--android:id="@+id/ratingBar"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginStart="20dp"-->
-                <!--style="@style/Base.Widget.AppCompat.RatingBar.Indicator"/>-->
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                style="@style/Base.Widget.AppCompat.RatingBar.Indicator"/>
         </RelativeLayout>
 
         <RelativeLayout

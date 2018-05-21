@@ -107,12 +107,15 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.buttonFavourite:{
+                mIMeActivity.inflateFragment(getString(R.string.favourite_fragment));
                 break;
             }
             case R.id.buttonHistory:{
+                mIMeActivity.inflateFragment(getString(R.string.history_fragment));
                 break;
             }
             case R.id.buttonReview:{
+                mIMeActivity.inflateFragment(getString(R.string.review_fragment));
                 break;
             }
             case R.id.buttonHelp:{

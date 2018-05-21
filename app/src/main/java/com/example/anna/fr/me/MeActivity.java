@@ -81,13 +81,16 @@ public class MeActivity extends AppCompatActivity implements IMeActivity{
     @Override
     public void inflateFragment(String fragmentTag) {
         if (fragmentTag.equals(getString(R.string.favourite_fragment))){
-
+            FavouriteFragment fragment = new FavouriteFragment();
+            doFragmentTransaction(fragment, fragmentTag,true);
         }
         else if (fragmentTag.equals(getString(R.string.history_fragment))){
-
+            HistoryFragment fragment = new HistoryFragment();
+            doFragmentTransaction(fragment, fragmentTag,true);
         }
         else if (fragmentTag.equals(getString(R.string.review_fragment))){
-
+            ReviewFragment fragment = new ReviewFragment();
+            doFragmentTransaction(fragment, fragmentTag,true);
         }
         else if (fragmentTag.equals(getString(R.string.help_fragment))){
             HelpFragment fragment = new HelpFragment();
