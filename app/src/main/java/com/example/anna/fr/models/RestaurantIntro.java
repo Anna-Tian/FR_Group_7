@@ -1,36 +1,23 @@
 package com.example.anna.fr.models;
 
-import java.util.Comparator;
+import android.support.v7.widget.CardView;
+
+import com.example.anna.fr.R;
 
 public class RestaurantIntro {
     private String name;
     private String profile_photo;
     private String address;
-    private int rating;
 
-    public RestaurantIntro(String name, String profile_photo, String address, int rating) {
+    public RestaurantIntro(String name, String profile_photo, String address) {
         this.name = name;
         this.profile_photo = profile_photo;
         this.address = address;
-        this.rating = rating;
     }
 
     public RestaurantIntro() {
 
     }
-
-    public static final Comparator<RestaurantIntro> ComparatorBy = new Comparator<RestaurantIntro>() {
-        @Override
-        public int compare(RestaurantIntro o1, RestaurantIntro o2) {
-            if (o1.getRating() > o2.getRating()){
-                return -1;}
-            else if (o1.getRating() < o2.getRating()){
-                return 1;}
-            else{
-                return 0;}
-
-        }
-    };
 
     public String getName() {
         return name;
@@ -62,15 +49,6 @@ public class RestaurantIntro {
                 "name='" + name + '\'' +
                 ", profile_photo='" + profile_photo + '\'' +
                 ", address='" + address + '\'' +
-                ", rating='" + rating + '\'' +
                 '}';
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 }
