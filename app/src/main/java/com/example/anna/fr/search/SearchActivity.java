@@ -117,7 +117,7 @@ public class SearchActivity extends AppCompatActivity{
 
     private void setAdapter(final String searchedString){
 
-        databaseReference.child("restaurant_intro").addListenerForSingleValueEvent( new ValueEventListener() {
+        databaseReference.child("restaurant_details").addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 nameList.clear();
