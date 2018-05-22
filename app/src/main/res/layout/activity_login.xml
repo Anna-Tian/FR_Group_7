@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="55dp"
     android:paddingLeft="25dp"
@@ -55,6 +55,15 @@
         android:layout_marginBottom="25dp"
         android:text="Login"
         android:id="@+id/btn_login"
+        android:padding="12dp"
+        android:background="@drawable/white_rounded_button"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="Cancel"
+        android:id="@+id/btn_cancel"
         android:padding="12dp"
         android:background="@drawable/white_rounded_button"/>
 
