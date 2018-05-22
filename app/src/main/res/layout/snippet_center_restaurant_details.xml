@@ -1,109 +1,116 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/restaurantImage"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurant Name"
+            android:id="@+id/restaurantName"
+            android:layout_below="@+id/restaurantImage"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/restaurantName"
+            android:layout_marginTop="5dp"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_centerHorizontal="true"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="20dp">
+            android:layout_below="@+id/ratingBar"
+            android:layout_marginTop="30dp"
+            android:id="@+id/relLayout1">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:id="@+id/restaurantImage"
-                android:layout_marginTop="20dp"
+            <!--address section-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/grey_border_bottom"
+                android:id="@+id/relLayout2">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_address"
+                    android:layout_centerVertical="true"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/restaurantAddress"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:background="@null"
+                    android:text="Address"
+                    android:textSize="17sp"/>
+            </RelativeLayout>
+
+            <!--phone section-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/relLayout2"
+                android:background="@drawable/grey_border_bottom"
+                android:id="@+id/relLayout3">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_phone"
+                    android:layout_centerVertical="true"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/restaurantPhone"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:textSize="17sp"
+                    android:text="Phone Number"/>
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relLayout3"
+                android:id="@+id/btnViewComments"
+                android:text="View Comments"
+                android:background="@drawable/white_rounded_button"
+                android:layout_marginTop="80dp"
                 android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Restaurant Name"
-                android:id="@+id/restaurantName"
-                android:layout_below="@+id/restaurantImage"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="25sp"/>
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/restaurantName"
-                android:layout_marginTop="5dp"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:layout_centerHorizontal="true"
-                android:stepSize="1"
-                android:rating="1"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/restaurantName"
-                android:layout_marginTop="30dp"
-                android:id="@+id/relLayout1">
-
-                <!--address section-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/grey_border_bottom"
-                    android:id="@+id/relLayout2">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/ic_address"
-                        android:layout_centerVertical="true"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/restaurantAddress"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="40dp"
-                        android:background="@null"
-                        android:text="Address"
-                        android:textSize="17sp"/>
-                </RelativeLayout>
-
-                <!--phone section-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/relLayout2"
-                    android:background="@drawable/grey_border_bottom"
-                    android:id="@+id/relLayout3">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/ic_phone"
-                        android:layout_centerVertical="true"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/restaurantPhone"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="40dp"
-                        android:textSize="17sp"
-                        android:text="Phone Number"/>
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relLayout1"
-                android:layout_marginTop="30dp"
-                android:id="@+id/relLayout4">
-
-                <include layout="@layout/snippet_center_writingreview"></include>
-            </RelativeLayout>
-
         </RelativeLayout>
-    </ScrollView>
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/relLayout1"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:id="@+id/relLayout4">-->
+
+        <!--<include layout="@layout/snippet_center_writingreview"></include>-->
+        <!--</RelativeLayout>-->
+
+    </RelativeLayout>
+</ScrollView>
