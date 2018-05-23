@@ -54,6 +54,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private String userID;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
 
 
     @Override
@@ -63,6 +64,8 @@ public class RestaurantActivity extends AppCompatActivity {
         mContext = RestaurantActivity.this;
         firebaseMethods = new FirebaseMethods(mContext);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference2 = FirebaseDatabase.getInstance().getReference();
+
         Log.d(TAG, "onCreate: start");
 
         setupFirebaseAuth();
@@ -99,6 +102,8 @@ public class RestaurantActivity extends AppCompatActivity {
                     Intent intent = new Intent(mContext,AddUserCommentActivity.class);
                     intent.putExtra("res_id",res_id);
                     startActivity(intent);
+                    finish();
+
                 }
             }
         });
@@ -132,10 +137,11 @@ public class RestaurantActivity extends AppCompatActivity {
 
 
     private void showData(final String rName, final String rAddress, final Context ctx){
+
         databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                for (final DataSnapshot ds: dataSnapshot.getChildren()){
                     String name = ds.child("name").getValue(String.class);
                     Log.d(TAG, "onDataChange: test " + name+" "+rName );
 
@@ -155,7 +161,27 @@ public class RestaurantActivity extends AppCompatActivity {
 
                         ImageView dProfilePhoto =(ImageView) findViewById(R.id.restaurantImage);
                         Picasso.with(ctx).load(ds.child("profile_photo").getValue(String.class)).into(dProfilePhoto);
+                        Log.d(TAG, "onDataChange: photo+++++++");
 
+                        databaseReference2.child("restaurant_comments").child(ds.child("res_id").getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                int sum = 0;
+                                int count = 0;
+                                for (DataSnapshot ds2 : dataSnapshot.getChildren()){
+                                    sum += ds2.child("rating").getValue(float.class).intValue();
+                                    count++;
+                                }
+                                Log.d(TAG, "onDataChange: ++++++++"+sum+" / "+count+" = "+ sum/count);
+                                databaseReference.child("restaurant_details").child(ds.child("res_id").getValue(String.class)).child("rating").setValue(sum/count);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                        Log.d(TAG, "onDataChange: rating bar ++++++");
                         RatingBar dRatingBar = (RatingBar) findViewById(R.id.ratingBar);
                         dRatingBar.setRating(ds.child("rating").getValue(float.class));
 

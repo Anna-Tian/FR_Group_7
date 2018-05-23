@@ -40,6 +40,9 @@ public class AddUserCommentActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
 
+    DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,9 @@ public class AddUserCommentActivity extends AppCompatActivity {
         userComment = (EditText) findViewById(R.id.writeReview) ;
         userRating = (RatingBar) findViewById(R.id.ratingBarWrite) ;
         mContext = AddUserCommentActivity.this;
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference2 = FirebaseDatabase.getInstance().getReference();
 
         res_id = getIntent().getStringExtra("res_id");
 
@@ -134,6 +140,43 @@ public class AddUserCommentActivity extends AppCompatActivity {
 
                     userComment.setText("");
                     userRating.setRating(0);
+
+
+                    databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (final DataSnapshot ds: dataSnapshot.getChildren()){
+                                String rID = ds.child("res_id").getValue(String.class);
+                                if(areSame(res_id,rID)){
+                                    databaseReference2.child("restaurant_comments").child(ds.child("res_id").getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            int sum = 0;
+                                            int count = 0;
+                                            for (DataSnapshot ds2 : dataSnapshot.getChildren()){
+                                                sum += ds2.child("rating").getValue(float.class).intValue();
+                                                count++;
+                                            }
+                                            Log.d(TAG, "onDataChange: ++++++++"+sum+" / "+count+" = "+ sum/count);
+                                            databaseReference.child("restaurant_details").child(ds.child("res_id").getValue(String.class)).child("rating").setValue(sum/count);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+                                    Log.d(TAG, "onDataChange: rating bar ++++++");
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                     finish();
                 }else {
                     Toast.makeText(mContext, "Incomplete input, please check that you have rated and commented", Toast.LENGTH_SHORT).show();
@@ -146,6 +189,7 @@ public class AddUserCommentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: naviagating back to 'HomeActivity'");
+
                 finish();
             }
         });

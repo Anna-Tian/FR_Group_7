@@ -26,8 +26,11 @@ import com.example.anna.fr.utils.FilterActivity;
 import com.example.anna.fr.utils.RestaurantActivity;
 import com.example.anna.fr.utils.UniversalImageLoader;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +43,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView mResList;
     private DatabaseReference mRef;
+    private DatabaseReference myRef;
+
+    DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
 
 
     @Override
@@ -48,6 +55,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: starting.");
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference2 = FirebaseDatabase.getInstance().getReference();
+
+        myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
+        myRef.keepSynced(true);
         mRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
         mRef.keepSynced(true);
 
@@ -74,6 +86,41 @@ public class HomeActivity extends AppCompatActivity {
                 viewHolder.setName(model.getName());
                 viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
                 viewHolder.setAddress(model.getAddress());
+                databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (final DataSnapshot ds: dataSnapshot.getChildren()){
+                            String name = ds.child("name").getValue(String.class);
+                            String address = ds.child("address").getValue(String.class);
+                            if(areSame(model.getName(),name)&&areSame(model.getAddress(),address)){
+                                databaseReference2.child("restaurant_comments").child(ds.child("res_id").getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                int sum = 0;
+                                int count = 0;
+                                for (DataSnapshot ds2 : dataSnapshot.getChildren()){
+                                    sum += ds2.child("rating").getValue(float.class).intValue();
+                                    count++;
+                                }
+                                Log.d(TAG, "onDataChange: ++++++++"+sum+" / "+count+" = "+ sum/count);
+                                databaseReference.child("restaurant_details").child(ds.child("res_id").getValue(String.class)).child("rating").setValue(sum/count);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                        Log.d(TAG, "onDataChange: rating bar ++++++");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 viewHolder.setRating((int) model.getRating());
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +163,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         public void setRating(int rating){
+
                        TextView ratingBarT = (TextView) mView.findViewById(R.id.ratingBarText);
                        ratingBarT.setText(rating+"");
                       RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.ratingBar);
@@ -153,6 +201,10 @@ public class HomeActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
 
+    }
+
+    private boolean areSame(String string1, String string2){
+        return string1.equals(string2);
     }
 
 }
