@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
                                     sum += ds2.child("rating").getValue(float.class).intValue();
                                     count++;
                                 }
-                                Log.d(TAG, "onDataChange: ++++++++"+sum+" / "+count+" = "+ sum/count);
+                                Log.d(TAG, "onDataChange: ++++"+sum+" / "+count+" = "+ sum/count);
                                 databaseReference.child("restaurant_details").child(ds.child("res_id").getValue(String.class)).child("rating").setValue(sum/count);
                             }
 
