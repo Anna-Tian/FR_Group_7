@@ -73,8 +73,6 @@ public class RestaurantActivity extends AppCompatActivity {
         });
 
 
-
-
         initWidgets();
         initImageLoader();
 
@@ -118,79 +116,42 @@ public class RestaurantActivity extends AppCompatActivity {
     private void showData(final String rName, final String rAddress, final Context ctx){
 
         databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
-
             @Override
-
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
-
                     String name = ds.child("name").getValue(String.class);
-
                     Log.d(TAG, "onDataChange: test " + name+" "+rName + " ++++++");
-
-
-
                     String address = ds.child("address").getValue(String.class);
 
                     Log.d(TAG, "onDataChange: test "+address+" "+rAddress+"++++++");
 
                     if(areSame(rName,name)&&areSame(rAddress,address)){
-
                         Log.d(TAG, "setRestaurant: setting profile photo name and address");
 
-
-
                         TextView dName = (TextView) findViewById(R.id.restaurantName);
-
                         dName.setText(ds.child("name").getValue(String.class));
 
-
-
                         TextView dAddress =(TextView) findViewById(R.id.restaurantAddress);
-
                         dAddress.setText(ds.child("address").getValue(String.class));
 
-
-
                         TextView dPhone = findViewById(R.id.restaurantPhone);
-
                         dPhone.setText(ds.child("phone").getValue(String.class));
 
-
-
                         ImageView dProfilePhoto =(ImageView) findViewById(R.id.restaurantImage);
-
                         Picasso.with(ctx).load(ds.child("profile_photo").getValue(String.class)).into(dProfilePhoto);
 
-
-
                         RatingBar dRatingBar = (RatingBar) findViewById(R.id.ratingBar);
-
                         dRatingBar.setRating(ds.child("rating").getValue(float.class));
-
                     } else {
-
                         Log.d(TAG, "onDataChange: no restaurant found *****");
-
                     }
-
                 }
-
             }
-
-
 
             @Override
-
             public void onCancelled(DatabaseError databaseError) {
-
-
-
             }
-
         });
-
     }
 
 
