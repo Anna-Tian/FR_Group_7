@@ -27,6 +27,8 @@
         <activity android:name=".login.RegisterActivity"></activity>
         <activity android:name=".login.LoginActivity"></activity>
         <activity android:name=".utils.RestaurantActivity"></activity>
+        <activity android:name=".utils.AddUserCommentActivity"></activity>
+        <activity android:name=".utils.ViewUserCommentActivity"></activity>
 
 
     </application>
