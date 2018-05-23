@@ -124,33 +124,24 @@ public class HomeActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: starting.");
 
 
+//
+//        databaseReference = FirebaseDatabase.getInstance().getReference();
+//
+//        databaseReference2 = FirebaseDatabase.getInstance().getReference();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+//        myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
+//
+//        myRef.keepSynced(true);
+//
+//
+//
+//
+//        mResList = (RecyclerView) findViewById(R.id.recyclerView);
+//
+//        mResList.setHasFixedSize(true);
+//
+//        mResList.setLayoutManager(new LinearLayoutManager(this));
 
-        databaseReference2 = FirebaseDatabase.getInstance().getReference();
-
-
-
-        myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
-
-        myRef.keepSynced(true);
-
-
-
-
-        mResList = (RecyclerView) findViewById(R.id.recyclerView);
-
-        mResList.setHasFixedSize(true);
-
-        mResList.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-        initImageLoader();
-
-        setupToolbar();
-
-        setupBottomNavigationView();
 
 
 
@@ -167,6 +158,14 @@ public class HomeActivity extends AppCompatActivity {
         addressList = new ArrayList<>();
         profile_photoList = new ArrayList<>();
 
+
+        initImageLoader();
+
+        setupToolbar();
+
+        setupBottomNavigationView();
+
+
         setAdapter();
 
 
@@ -174,9 +173,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
-
         private void setAdapter() {
+            Toast.makeText(mContext, "Random restaurant!~~~", Toast.LENGTH_SHORT).show();
 
             databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -244,43 +242,6 @@ public class HomeActivity extends AppCompatActivity {
                                     Log.d(TAG, "onDataChange: rating bar ++++++");
                                        }
 
-
-
-
-
-
-        private void initImageLoader(){
-            UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
-            ImageLoader.getInstance().init(universalImageLoader.getConfig());
-        }
-        private void setupToolbar(){
-            Toolbar toolbar = (Toolbar) findViewById(R.id.homeBar);
-            setSupportActionBar(toolbar);
-
-            ImageView filterMenu = (ImageView) findViewById(R.id.filterMenu);
-            filterMenu.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "onClick: navigating to filter selection.");
-                    Intent intent = new Intent(mContext, FilterActivity.class);
-                    startActivity(intent);
-
-                }
-            });
-
-        }
-
-
-        // BottomNavigationView setup
-        private void setupBottomNavigationView() {
-            Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-            BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavViewBar);
-            BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
-            Menu menu = bottomNavigationView.getMenu();
-            MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-            menuItem.setChecked(true);
-
-        }
 
 
 
@@ -379,12 +340,43 @@ public class HomeActivity extends AppCompatActivity {
 //
 
 
-    private boolean areSame(String string1, String string2){
+//    private boolean areSame(String string1, String string2){
+//
+//        return string1.equals(string2);
+//
+//    }
 
-        return string1.equals(string2);
+    private void initImageLoader(){
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
+    }
+    private void setupToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.homeBar);
+        setSupportActionBar(toolbar);
+
+        ImageView filterMenu = (ImageView) findViewById(R.id.filterMenu);
+        filterMenu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating to filter selection.");
+                Intent intent = new Intent(mContext, FilterActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
 
+    // BottomNavigationView setup
+    private void setupBottomNavigationView() {
+        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
+
+    }
 
 }
