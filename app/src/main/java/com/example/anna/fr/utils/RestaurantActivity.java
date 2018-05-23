@@ -19,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anna.fr.R;
+import com.example.anna.fr.login.LoginActivity;
 import com.example.anna.fr.models.RestaurantDetails;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,18 +39,20 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private Context mContext;
     private String test;
-    private String name, address, profile_photo;
+    private String name, address, profile_photo,res_id;
     private long phone;
     private int rating;
     private TextView mPhone, mName, mAddress;
     private ImageView mProfilePhoto;
     private RatingBar mRating;
+    private Button mAddComment,mViewComment;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseMethods firebaseMethods;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private String userID;
     DatabaseReference databaseReference;
 
 
@@ -61,8 +65,11 @@ public class RestaurantActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         Log.d(TAG, "onCreate: start");
 
+        setupFirebaseAuth();
         myRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.dbname_restaurant_details));
         myRef.keepSynced(true);
+
+
 
         ImageView backArrow = (ImageView) findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +87,31 @@ public class RestaurantActivity extends AppCompatActivity {
         initImageLoader();
 
         getIncomingIntent();
+
+        Button addComment = (Button) findViewById(R.id.btnAddComments);
+        addComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userID.equals("")){
+                    Intent intent = new Intent(mContext,LoginActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(mContext,AddUserCommentActivity.class);
+                    intent.putExtra("res_id",res_id);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        Button viewComment = (Button) findViewById(R.id.btnViewComments);
+        viewComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,ViewUserCommentActivity.class);
+                intent.putExtra("res_id",res_id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getIncomingIntent() {
@@ -94,30 +126,10 @@ public class RestaurantActivity extends AppCompatActivity {
             String rPhone = getIntent().getStringExtra("phone");
             int  rRating=getIntent().getIntExtra("rating",rating);
 
-//            setRestaurant(rName,rAddress,rPhone,rProfilePhoto,rRating,getApplicationContext(),rTest);
             showData(rName,rAddress,getApplicationContext());
         }
     }
 
-    private void setRestaurant(String rName,String rAddress, String rPhone,String rProfilePhoto,int rRating, Context ctx, String rTest ){
-        Log.d(TAG, "setRestaurant: setting profile photo name and address");
-
-        TextView name = (TextView) findViewById(R.id.restaurantName);
-        name.setText(rName);
-
-        TextView address =(TextView) findViewById(R.id.restaurantAddress);
-        address.setText(rAddress);
-
-        TextView phone = findViewById(R.id.restaurantPhone);
-        phone.setText(rPhone);
-
-        ImageView profilePhoto =(ImageView) findViewById(R.id.restaurantImage);
-        Picasso.with(ctx).load(rProfilePhoto).into(profilePhoto);
-
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        ratingBar.setRating(rRating);
-
-    }
 
     private void showData(final String rName, final String rAddress, final Context ctx){
         databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -125,10 +137,10 @@ public class RestaurantActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
                     String name = ds.child("name").getValue(String.class);
-                    Log.d(TAG, "onDataChange: test " + name+" "+rName + " ++++++");
+                    Log.d(TAG, "onDataChange: test " + name+" "+rName );
 
                     String address = ds.child("address").getValue(String.class);
-                    Log.d(TAG, "onDataChange: test "+address+" "+rAddress+"++++++");
+                    Log.d(TAG, "onDataChange: test "+address+" "+rAddress);
                     if(areSame(rName,name)&&areSame(rAddress,address)){
                         Log.d(TAG, "setRestaurant: setting profile photo name and address");
 
@@ -146,8 +158,10 @@ public class RestaurantActivity extends AppCompatActivity {
 
                         RatingBar dRatingBar = (RatingBar) findViewById(R.id.ratingBar);
                         dRatingBar.setRating(ds.child("rating").getValue(float.class));
+
+                        res_id = ds.child("res_id").getValue(String.class);
                     } else {
-                        Log.d(TAG, "onDataChange: no restaurant found *****");
+                        Log.d(TAG, "onDataChange: no restaurant found ");
                     }
                 }
             }
@@ -167,7 +181,8 @@ public class RestaurantActivity extends AppCompatActivity {
         mProfilePhoto = (ImageView) findViewById(R.id.restaurantImage);
         mAddress = (TextView) findViewById(R.id.restaurantAddress);
         mRating = (RatingBar) findViewById(R.id.ratingBar);
-
+        mAddComment = (Button) findViewById(R.id.btnAddComments);
+        mViewComment = (Button) findViewById(R.id.btnViewComments) ;
         mContext = RestaurantActivity.this;
         RestaurantDetails restaurantDetails = new RestaurantDetails();
         UniversalImageLoader.setImage(restaurantDetails.getProfile_photo(),mProfilePhoto, null, "");
@@ -215,6 +230,45 @@ public class RestaurantActivity extends AppCompatActivity {
     private boolean areSame(String string1, String string2){
         return string1.equals(string2);
     }
+
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null){
+                    // user is signed in
+                    Log.d(TAG, "onAuthStateChanged: signed_in: " + user.getUid());
+                    userID = user.getUid();
+                } else {
+                    // user is signed out
+                    Log.d(TAG, "onAuthStateChanged: signed_out");
+                    userID = "";
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
 
     /*
     -----------Firebase-----------------
