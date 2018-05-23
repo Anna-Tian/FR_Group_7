@@ -79,8 +79,8 @@ public class LoginActivity extends AppCompatActivity{
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
 
-                if(isStringNull(email) && isStringNull(password)){
-                    Toast.makeText(mContext, "please fill out all the fields", Toast.LENGTH_SHORT).show();
+                if(isStringNull(email) || isStringNull(password)){
+                    Toast.makeText(mContext, "Please fill out all the fields", Toast.LENGTH_SHORT).show();
                 }else {
                     mProgressBar.setVisibility(View.VISIBLE);
                     mPleaseWait.setVisibility(View.VISIBLE);
