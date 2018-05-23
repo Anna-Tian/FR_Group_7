@@ -109,6 +109,7 @@ public class EditProfileFragment extends Fragment implements
     private TextView mChangeProfilePhoto;
     private String userID;
     private CircleImageView mProfilePhoto;
+    private ImageView backArrow, checkmark;
 
     //variables
     private UserSettings mUserSettings;
@@ -134,13 +135,14 @@ public class EditProfileFragment extends Fragment implements
         mPhone = (EditText) view.findViewById(R.id.phone);
         mEmail = (EditText) view.findViewById(R.id.email);
         mChangeProfilePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
+        backArrow = (ImageView) view.findViewById(R.id.backArrow);
+        checkmark = (ImageView) view.findViewById(R.id.saveChanges);
         mFirebaseMethods = new FirebaseMethods(getActivity());
 
         setupFirebaseAuth();
 //        setProfileImage();
 
         //setup the backarraw for navigating back to "ProfileActivity"
-        ImageView backArrow = (ImageView) view.findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,18 +151,13 @@ public class EditProfileFragment extends Fragment implements
             }
         });
 
-        ImageView checkmark = (ImageView) view.findViewById(R.id.saveChanges);
         checkmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to save changes.");
                 saveProfileSettings();
-                Intent intent = new Intent(getActivity(), MeActivity.class);
-                startActivity(intent);
-                Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         return view;
     }
@@ -182,7 +179,7 @@ public class EditProfileFragment extends Fragment implements
             checkIfUsernameExists(username);
         }
         //case 2: if the user made a change to their email
-        if (!mUserSettings.getUser().getEmail().equals(email)){
+        else if (!mUserSettings.getUser().getEmail().equals(email)){
             // see the above "onConfirmPassword"
 
             //step1: reauthenticate
@@ -196,18 +193,22 @@ public class EditProfileFragment extends Fragment implements
             //step3: change the email
             //      -submit the new email to the database and authentication
         }
-
-        if (!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
+        else if (!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
             mFirebaseMethods.updateUserSettings(displayName, null, null, 0);
+            Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
         }
-        if (!mUserSettings.getUser().getAddress().equals(address)){
+        else if (!mUserSettings.getUser().getAddress().equals(address)){
             mFirebaseMethods.updateUserSettings(null, address, null, 0);
+            Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
         }
-        if (!mUserSettings.getUser().getDescription().equals(description)){
+        else if (!mUserSettings.getUser().getDescription().equals(description)){
             mFirebaseMethods.updateUserSettings(null, null, description, 0);
+            Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
         }
-        if (!mUserSettings.getUser().getDescription().equals(phone)){
+        else if (!mUserSettings.getUser().getDescription().equals(phone)){
             mFirebaseMethods.updateUserSettings(null, null, null, phone);
+            Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -229,7 +230,7 @@ public class EditProfileFragment extends Fragment implements
                 if(!dataSnapshot.exists()){
                     //add the username
                     mFirebaseMethods.updateUsername(username);
-                    Toast.makeText(getActivity(), "Saved username.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
                 }
                 for (DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
                     if (singleSnapshot.exists()){

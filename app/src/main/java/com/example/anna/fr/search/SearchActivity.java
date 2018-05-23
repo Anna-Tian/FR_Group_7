@@ -1,6 +1,7 @@
 package com.example.anna.fr.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -13,10 +14,13 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.anna.fr.R;
 import com.example.anna.fr.utils.BottomNavigationViewHelper;
+import com.example.anna.fr.utils.FilterActivity;
 import com.example.anna.fr.utils.SearchAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -111,6 +115,16 @@ public class SearchActivity extends AppCompatActivity{
         } );
         setupBottomNavigationView();
 
+        ImageView filterMenu = (ImageView) findViewById(R.id.filterMenu);
+        filterMenu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating to filter selection.");
+                Intent intent = new Intent(mContext, FilterActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 
@@ -124,7 +138,6 @@ public class SearchActivity extends AppCompatActivity{
                 addressList.clear();
                 profile_photoList.clear();
                 recyclerView.removeAllViews();
-                int counter = 0;
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                     String uid = snapshot.getKey();
@@ -136,16 +149,11 @@ public class SearchActivity extends AppCompatActivity{
                      nameList.add(name);
                      addressList.add(address);
                      profile_photoList.add(profile_photo);
-                     counter++;
                     } else if (address.toLowerCase().contains( searchedString.toLowerCase() )){
                         nameList.add(name);
                         addressList.add(address);
                         profile_photoList.add(profile_photo);
-                        counter++;
                     }
-
-                    if(counter ==15)
-                        break;
 
                 }
 
