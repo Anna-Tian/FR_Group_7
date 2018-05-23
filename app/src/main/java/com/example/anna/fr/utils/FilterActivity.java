@@ -116,12 +116,18 @@ public class FilterActivity extends AppCompatActivity {
                 mBuilder.setMultiChoiceItems(listItems1, checkedItems1, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isChecked) {
-                        if(isChecked){
-                            if(! mUserItems1.contains(position)){
-                                mUserItems1.add(position);
-                            }
-                        }else if(mUserItems1.contains(position)){
-                            mUserItems1.remove(position);
+//                        if(isChecked){
+//                            if(! mUserItems1.contains(position)){
+//                                mUserItems1.add(position);
+//                            }
+//                        }else if(mUserItems1.contains(position)){
+//                            mUserItems1.remove(position);
+//                        }
+                        if (isChecked){
+                            checkedItems1[position]=true;
+                        }
+                        else{
+                            checkedItems1[position]=false;
                         }
                     }
                 });
@@ -130,12 +136,15 @@ public class FilterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String item = "";
-                        for(int i = 0; i < mUserItems1.size(); i++){
-                            item = item + listItems1[mUserItems1.get(i)];
-//                            SelectedString1.add(item);
-                            if (i != mUserItems1.size() -1){
-                                item = item + ",";
+                        for(int i = 0; i < listItems1.length; i++){
+                            if (checkedItems1[i]){
+                                item += listItems1[i]+ " ";
                             }
+//                            item = item + listItems1[mUserItems1.get(i)];
+////                            SelectedString1.add(item);
+//                            if (i != mUserItems1.size() -1){
+//                                item = item + ",";
+//                            }
                         }
                         mItemSelected.setText(item);
 //                        selectedItemsforToast.add(item);
@@ -180,12 +189,11 @@ public class FilterActivity extends AppCompatActivity {
                 mBuilder.setMultiChoiceItems(listItems2, checkedItems2, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isChecked) {
-                        if(isChecked){
-                            if(! mUserItems2.contains(position)){
-                                mUserItems2.add(position);
-                            }
-                        }else if(mUserItems2.contains(position)){
-                            mUserItems2.remove(position);
+                        if (isChecked){
+                            checkedItems2[position]=true;
+                        }
+                        else{
+                            checkedItems2[position]=false;
                         }
                     }
                 });
@@ -194,10 +202,9 @@ public class FilterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String item = "";
-                        for(int i = 0; i < mUserItems2.size(); i++){
-                            item = item + listItems2[mUserItems2.get(i)];
-                            if (i != mUserItems2.size() -1){
-                                item = item + ",";
+                        for(int i = 0; i < listItems2.length; i++){
+                            if (checkedItems2[i]){
+                                item += listItems2[i]+ " ";
                             }
                         }
                         mItemSelected2.setText(item);
@@ -239,12 +246,11 @@ public class FilterActivity extends AppCompatActivity {
                 mBuilder.setMultiChoiceItems(listItems3, checkedItems3, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isChecked) {
-                        if(isChecked){
-                            if(! mUserItems3.contains(position)){
-                                mUserItems3.add(position);
-                            }
-                        }else if(mUserItems3.contains(position)){
-                            mUserItems3.remove(position);
+                        if (isChecked){
+                            checkedItems3[position]=true;
+                        }
+                        else{
+                            checkedItems3[position]=false;
                         }
                     }
                 });
@@ -253,10 +259,9 @@ public class FilterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String item = "";
-                        for(int i = 0; i < mUserItems3.size(); i++){
-                            item = item + listItems3[mUserItems3.get(i)];
-                            if (i != mUserItems3.size() -1){
-                                item = item + ",";
+                        for(int i = 0; i < listItems3.length; i++){
+                            if (checkedItems3[i]){
+                                item += listItems3[i]+ " ";
                             }
                         }
                         mItemSelected3.setText(item);
