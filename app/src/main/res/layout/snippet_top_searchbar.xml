@@ -34,21 +34,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/searchIcon"
-                    android:layout_toStartOf="@+id/searchBtn"
+                    android:layout_toStartOf="@+id/filterMenu"
                     android:layout_centerVertical="true"
                     android:inputType="text"
                     android:hint="What you want to eat?" />
 
-                <Button
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:id="@+id/searchBtn"
-                    android:background="@drawable/white_rounded_button"
+                <!--<Button-->
+                    <!--android:layout_width="75dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:id="@+id/searchBtn"-->
+                    <!--android:background="@drawable/white_rounded_button"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="20dp"-->
+                    <!--android:text="search"-->
+                    <!--android:textSize="14sp"/>-->
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_marginEnd="20dp"
-                    android:text="search"
-                    android:textSize="14sp"/>
+                    android:layout_centerVertical="true"
+                    android:id="@+id/filterMenu"
+                    android:src="@drawable/ic_filter"/>
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
