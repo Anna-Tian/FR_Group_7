@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity{
     private Context mContext;
     private String email, username, password, phone, profile_photo, description, address;
     private EditText mEmail, mPassword, mUsername;
-    private Button btnRegister;
+    private Button btnRegister, btnBack;
     private String append = "";
     private ProgressBar mProgressBar;
     private TextView loadingPleaseWait;
@@ -71,11 +71,17 @@ public class RegisterActivity extends AppCompatActivity{
                 password = mPassword.getText().toString();
 
                 if (checkInputs(email,username,password)){
-                    mProgressBar.setVisibility(View.VISIBLE);
-                    loadingPleaseWait.setVisibility(View.VISIBLE);
-
                     firebaseMethods.registerNewEmail(email, username, password);
                 }
+            }
+        });
+        
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating back to Login page");
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -98,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity{
         mPassword = (EditText) findViewById(R.id.input_password);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         loadingPleaseWait = (TextView) findViewById(R.id.pleaseWait);
+        btnBack = (Button) findViewById(R.id.btn_back);
 
         mProgressBar.setVisibility(View.GONE);
         loadingPleaseWait.setVisibility(View.GONE);

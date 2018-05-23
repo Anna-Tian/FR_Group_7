@@ -62,7 +62,7 @@
             android:textSize="40sp"
             android:id="@+id/text"
             android:textColor="@color/black"
-            android:text="Favourite fragment"/>
+            android:text="Coming Soon..."/>
 
 
     </RelativeLayout>

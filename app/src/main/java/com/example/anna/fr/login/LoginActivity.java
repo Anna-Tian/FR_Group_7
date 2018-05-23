@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
+import com.example.anna.fr.home.HomeActivity;
 import com.example.anna.fr.me.MeActivity;
 
 import com.example.anna.fr.R;
@@ -158,9 +158,9 @@ public class LoginActivity extends AppCompatActivity{
 
 
 
-                if(isStringNull(email) && isStringNull(password)){
+                if(isStringNull(email) || isStringNull(password)){
 
-                    Toast.makeText(mContext, "please fill out all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Please fill out all the fields", Toast.LENGTH_SHORT).show();
 
                 }else {
 
@@ -208,7 +208,7 @@ public class LoginActivity extends AppCompatActivity{
 
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
 
-                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.makeText(LoginActivity.this, "Email or password you entered don't match, please try again.",
 
                                                 Toast.LENGTH_SHORT).show();
 
@@ -250,6 +250,16 @@ public class LoginActivity extends AppCompatActivity{
 
             }
 
+        });
+
+        Button btnCancel = (Button) findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating back to home page");
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
         });
 
 

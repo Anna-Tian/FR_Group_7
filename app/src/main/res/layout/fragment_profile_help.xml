@@ -33,7 +33,7 @@
             android:layout_below="@+id/text"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
-            android:text="04XX XXX XXX"/>
+            android:text="0211 223 344"/>
 
     </RelativeLayout>
 
