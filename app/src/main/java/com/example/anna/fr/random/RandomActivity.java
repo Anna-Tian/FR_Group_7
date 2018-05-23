@@ -121,9 +121,9 @@ public class RandomActivity extends AppCompatActivity{
                 profile_photoList.clear();
                 recyclerView.removeAllViews();
 
-for(int counter=10 ;counter>0;counter--) {
+for(int counter=10;counter>0;counter--) {
 
-    int randomIndex = (int)Math.floor(Math.random() * 10);
+
 
     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
         String uid = snapshot.getKey();
@@ -132,12 +132,14 @@ for(int counter=10 ;counter>0;counter--) {
         String address = snapshot.child("address").getValue(String.class);
         String profile_photo = snapshot.child("profile_photo").getValue(String.class);
         float rating = snapshot.child("rating").getValue(float.class);
-
+        int randomIndex = (int)Math.floor(Math.random() * 10);
 
         if (counter == randomIndex) {
-            nameList.add(name);
-            addressList.add(address);
-            profile_photoList.add(profile_photo);
+            if(!nameList.contains(name)) {
+                nameList.add(name);
+                addressList.add(address);
+                profile_photoList.add(profile_photo);
+            }
 
         }
 
