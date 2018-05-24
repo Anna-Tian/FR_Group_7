@@ -96,6 +96,7 @@ public class EditProfileFragment extends Fragment implements
                             });
                         }else {
                             Log.e(TAG, "onComplete: re-authentication failed.");
+                            Toast.makeText(getActivity(),"Invalid Password", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
