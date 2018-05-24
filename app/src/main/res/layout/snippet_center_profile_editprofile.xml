@@ -83,7 +83,7 @@
             <!--address section-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/relLayout3"
                 android:background="@drawable/grey_border_bottom"
                 android:id="@+id/relLayout2"
@@ -101,14 +101,14 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textMultiLine"
                     android:hint="Address"/>
             </RelativeLayout>
 
             <!--description section-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/relLayout2"
                 android:background="@drawable/grey_border_bottom"
                 android:id="@+id/relLayout4"
@@ -126,7 +126,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textMultiLine"
                     android:hint="Description"/>
             </RelativeLayout>
 

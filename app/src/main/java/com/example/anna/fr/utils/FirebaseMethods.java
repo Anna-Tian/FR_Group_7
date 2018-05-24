@@ -133,7 +133,7 @@ public class FirebaseMethods {
     public void addNewUser (String email, String username){
         User user = new User(
                 userID,
-                04,
+                61,
                 email,
                 StringManipulation.condenseUsername(username),
                 "",

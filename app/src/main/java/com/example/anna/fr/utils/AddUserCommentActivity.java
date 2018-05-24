@@ -360,7 +360,7 @@ public class AddUserCommentActivity extends AppCompatActivity {
 
                 }else {
 
-                    Toast.makeText(mContext, "Incomplete input, please check that you have rated and commented", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Incomplete input, please check that you have rated and commented", Toast.LENGTH_LONG).show();
 
                 }
 
