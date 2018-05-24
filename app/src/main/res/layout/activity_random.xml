@@ -24,7 +24,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/relLayout2"
             android:layout_below="@+id/relLayout1"
             android:layout_marginBottom="50dp">
 
@@ -37,24 +36,7 @@
             </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
-        <!--<RatingBar-->
-            <!--android:id="@+id/ratingBar1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/relLayout1"-->
-            <!--android:numStars="6"-->
-            <!--android:stepSize="1"/>-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/ratingText1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="24dp"-->
-            <!--android:layout_toRightOf="@id/ratingBar1"-->
-            <!--android:layout_below="@+id/ratingBar1"-->
-            <!--android:text="rating:"-->
-            <!--android:textSize="14sp" />-->
-
-        <!--bottom navigation-->
         <include layout="@layout/layout_bottom_navigation_view"/>
 
     </RelativeLayout>
