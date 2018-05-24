@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anna.fr.R;
 import com.example.anna.fr.home.HomeActivity;
@@ -112,6 +113,7 @@ public class RandomActivity extends AppCompatActivity{
 
 
     private void setAdapter() {
+        Toast.makeText(mContext, "Random restaurant!~~~", Toast.LENGTH_SHORT).show();
 
         databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -174,7 +174,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         private void setAdapter() {
-            Toast.makeText(mContext, "Random restaurant!~~~", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Today's recommendation for you~~~", Toast.LENGTH_SHORT).show();
 
             databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
