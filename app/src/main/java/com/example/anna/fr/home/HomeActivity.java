@@ -133,9 +133,6 @@ public class HomeActivity extends AppCompatActivity {
 //
 //        myRef.keepSynced(true);
 //
-//
-//
-//
 //        mResList = (RecyclerView) findViewById(R.id.recyclerView);
 //
 //        mResList.setHasFixedSize(true);
@@ -174,7 +171,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         private void setAdapter() {
-            Toast.makeText(mContext, "Today's recommendation for you~~~", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Worth to have a try ^ ^", Toast.LENGTH_SHORT).show();
 
             databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -213,12 +210,8 @@ public class HomeActivity extends AppCompatActivity {
 //
 //                                    }
 //
-//                                    Log.d(TAG, "onDataChange: ++++" + sum + " / " + count + " = " + sum / count);
-//
 //                                    databaseReference.child("restaurant_details").child(snapshot.child("res_id").getValue(String.class)).child("rating").setValue(sum / count);
 //
-
-
                             if (rating == counter) {
                                 nameList.add(name);
                                 addressList.add(address);
@@ -239,117 +232,14 @@ public class HomeActivity extends AppCompatActivity {
 
                                                        }
                        });
-                                    Log.d(TAG, "onDataChange: rating bar ++++++");
                                        }
 
-
-
-
-//
-//
-//    @Override
-//
-//    protected void onStart() {
-//
-//        super.onStart();
-//
-//        FirebaseRecyclerAdapter<RestaurantDetails, ResViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<RestaurantDetails, ResViewHolder>
-//
-//                (RestaurantDetails.class, R.layout.snippet_center_restaurant_introduction, ResViewHolder.class, mRef) {
-//
-//            @Override
-//
-//            protected void populateViewHolder(ResViewHolder viewHolder, final RestaurantDetails model, int position) {
-//
-//                viewHolder.setName(model.getName());
-//
-//                viewHolder.setProfile_photo(getApplicationContext(),model.getProfile_photo());
-//
-//                viewHolder.setAddress(model.getAddress());
-//
-//                databaseReference.child("restaurant_details").addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//                    @Override
-//
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                        for (final DataSnapshot ds: dataSnapshot.getChildren()){
-//
-//                            String name = ds.child("name").getValue(String.class);
-//
-//                            String address = ds.child("address").getValue(String.class);
-//
-//                            if(areSame(model.getName(),name)&&areSame(model.getAddress(),address)){
-//
-//                                databaseReference2.child("restaurant_comments").child(ds.child("res_id").getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//                                    @Override
-//
-//                                    public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                                        int sum = 0;
-//
-//                                        int count = 0;
-//
-//                                        for (DataSnapshot ds2 : dataSnapshot.getChildren()){
-//
-//                                            sum += ds2.child("rating").getValue(float.class).intValue();
-//
-//                                            count++;
-//
-//                                        }
-//
-//                                        Log.d(TAG, "onDataChange: ++++"+sum+" / "+count+" = "+ sum/count);
-//
-//                                        databaseReference.child("restaurant_details").child(ds.child("res_id").getValue(String.class)).child("rating").setValue(sum/count);
-//
-//                                    }
-//
-//
-//
-//                                    @Override
-//
-//                                    public void onCancelled(DatabaseError databaseError) {
-//
-//
-//
-//                                    }
-//
-//                                });
-//
-//                                Log.d(TAG, "onDataChange: rating bar ++++++");
-//
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//
-//
-//                    @Override
-//
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//
-//
-//                    }
-//
-//                });
-//
-//
-
-
-//    private boolean areSame(String string1, String string2){
-//
-//        return string1.equals(string2);
-//
-//    }
 
     private void initImageLoader(){
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
+
     private void setupToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.homeBar);
         setSupportActionBar(toolbar);
@@ -368,7 +258,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    // BottomNavigationView setup
     private void setupBottomNavigationView() {
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavViewBar);

@@ -39,8 +39,8 @@ public class RandomActivity extends AppCompatActivity{
 
     private Context mContext = RandomActivity.this;
 
-    private TextView textRating;
-    private  RatingBar ratingBar;
+//    private TextView textRating;
+//    private  RatingBar ratingBar;
 
     private RecyclerView mResList;
     private DatabaseReference mRef;
@@ -125,15 +125,11 @@ public class RandomActivity extends AppCompatActivity{
 
 for(int counter=10;counter>0;counter--) {
 
-
-
     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-        String uid = snapshot.getKey();
-
         String name = snapshot.child("name").getValue(String.class);
         String address = snapshot.child("address").getValue(String.class);
         String profile_photo = snapshot.child("profile_photo").getValue(String.class);
-        float rating = snapshot.child("rating").getValue(float.class);
+//        float rating = snapshot.child("rating").getValue(float.class);
         int randomIndex = (int)Math.floor(Math.random() * 10);
 
         if (counter == randomIndex) {
@@ -159,7 +155,7 @@ for(int counter=10;counter>0;counter--) {
             }
         });
     }
-    //testing
+
 }
 
 
