@@ -651,9 +651,9 @@ public class SearchActivity extends AppCompatActivity{
 
 //        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-//        adapter.addFragment(new HistoryFragment()); //index 0
 
-//        adapter.addFragment(new SavedFragment()); //index 1
+
+
 
 //        ViewPager viewPager = (ViewPager) findViewById(R.id.search_container);
 
