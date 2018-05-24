@@ -138,7 +138,8 @@ public class FilterActivity extends AppCompatActivity {
                         String item = "";
                         for(int i = 0; i < listItems1.length; i++){
                             if (checkedItems1[i]){
-                                item += listItems1[i]+ " ";
+                                item += listItems1[i]+ ", ";
+
                             }
 //                            item = item + listItems1[mUserItems1.get(i)];
 ////                            SelectedString1.add(item);
@@ -147,8 +148,8 @@ public class FilterActivity extends AppCompatActivity {
 //                            }
                         }
                         mItemSelected.setText(item);
-//                        selectedItemsforToast.add(item);
-//                        SelectedString1.add(item);
+                        selectedItemsforToast.add(item);
+//
                     }
                 });
                 mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
@@ -204,11 +205,12 @@ public class FilterActivity extends AppCompatActivity {
                         String item = "";
                         for(int i = 0; i < listItems2.length; i++){
                             if (checkedItems2[i]){
-                                item += listItems2[i]+ " ";
+                                item += listItems2[i]+ ", ";
                             }
                         }
                         mItemSelected2.setText(item);
-//                        selectedItemsforToast.add(item);
+                        selectedItemsforToast.add(item);
+
                     }
                 });
                 mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
@@ -261,11 +263,12 @@ public class FilterActivity extends AppCompatActivity {
                         String item = "";
                         for(int i = 0; i < listItems3.length; i++){
                             if (checkedItems3[i]){
-                                item += listItems3[i]+ " ";
+                                item += listItems3[i]+ ", ";
                             }
                         }
                         mItemSelected3.setText(item);
-//                        selectedItemsforToast.add(item);
+                        selectedItemsforToast.add(item);
+
                     }
                 });
                 mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
@@ -356,7 +359,7 @@ public class FilterActivity extends AppCompatActivity {
 
                     }else if(searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("outdoor seat")&&outdoorSeat.equals("yes")
+                            searchedString3.equals("outdoor seat, ")&&outdoorSeat.equals("yes")
                             ){
                         //only more, and there is only outdoor seat in more;
                         nameList.add(name);
@@ -365,7 +368,7 @@ public class FilterActivity extends AppCompatActivity {
                     }
                     else if(searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("card")&&card.equals("yes")
+                            searchedString3.equals("card, ")&&card.toLowerCase().equals("yes")
                             ){
                         //only more, and there is only card in more;
                         nameList.add(name);
@@ -373,7 +376,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("byo")&&byo.equals("yes")
+                            searchedString3.toLowerCase().equals("byo, ")&&byo.equals("yes")
                             ){
                         //only more, and there is only byo in more;
                         nameList.add(name);
@@ -381,7 +384,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("wifi")&&wifi.equals("yes")
+                            searchedString3.toLowerCase().equals("wifi, ")&&wifi.equals("yes")
                             ){
                         //only more, and there is only wifi in more;
                         nameList.add(name);
@@ -517,7 +520,7 @@ public class FilterActivity extends AppCompatActivity {
                         //category and more-------------------------------------------------------------------------------------------------------------------------------------
                     }else if(!searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("outdoor seat")&&outdoorSeat.equals("yes")
+                            searchedString3.equals("outdoor seat, ")&&outdoorSeat.equals("yes")
                             ){
                         //only more, and there is only outdoor seat in more;
                         nameList.add(name);
@@ -525,7 +528,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(!searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("card")&&card.equals("yes")
+                            searchedString3.equals("card, ")&&card.equals("yes")
                             ){
                         //only more, and there is only card in more;
                         nameList.add(name);
@@ -533,7 +536,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(!searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("byo")&&byo.equals("yes")
+                            searchedString3.toLowerCase().equals("byo, ")&&byo.equals("yes")
                             ){
                         //only more, and there is only byo in more;
                         nameList.add(name);
@@ -541,7 +544,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(!searchedString.isEmpty() && searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("wifi")&&wifi.equals("yes")
+                            searchedString3.toLowerCase().equals("wifi, ")&&wifi.equals("yes")
                             ){
                         //only more, and there is only wifi in more;
                         nameList.add(name);
@@ -669,7 +672,7 @@ public class FilterActivity extends AppCompatActivity {
                     //cuisine and more-------------------------------------------------------------------------------------------------------------------------------------
                     }else if(searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("outdoor seat")&&outdoorSeat.equals("yes")
+                            searchedString3.equals("outdoor seat, ")&&outdoorSeat.equals("yes")
                             ){
                         //only more, and there is only outdoor seat in more;
                         nameList.add(name);
@@ -677,7 +680,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("card")&&card.equals("yes")
+                            searchedString3.equals("card, ")&&card.equals("yes")
                             ){
                         //only more, and there is only card in more;
                         nameList.add(name);
@@ -685,7 +688,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("byo")&&byo.equals("yes")
+                            searchedString3.toLowerCase().equals("byo, ")&&byo.equals("yes")
                             ){
                         //only more, and there is only byo in more;
                         nameList.add(name);
@@ -693,7 +696,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("wifi")&&wifi.equals("yes")
+                            searchedString3.toLowerCase().equals("wifi, ")&&wifi.equals("yes")
                             ){
                         //only more, and there is only wifi in more;
                         nameList.add(name);
@@ -826,7 +829,7 @@ public class FilterActivity extends AppCompatActivity {
                     //category, cuisine and more all together filter options
                     else if(!searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("outdoor seat")&&outdoorSeat.equals("yes")
+                            searchedString3.equals("outdoor seat, ")&&outdoorSeat.equals("yes")
                             ) {
                         //only more, and there is only outdoor seat in more;
                         nameList.add(name);
@@ -834,7 +837,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(!searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.equals("card")&&card.equals("yes")
+                            searchedString3.equals("card, ")&&card.equals("yes")
                             ){
                         //only more, and there is only card in more;
                         nameList.add(name);
@@ -842,7 +845,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(!searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("byo")&&byo.equals("yes")
+                            searchedString3.toLowerCase().equals("byo, ")&&byo.equals("yes")
                             ){
                         //only more, and there is only byo in more;
                         nameList.add(name);
@@ -850,7 +853,7 @@ public class FilterActivity extends AppCompatActivity {
                         profile_photoList.add(profile_photo);
                     }else if(!searchedString.isEmpty() && !searchedString2.isEmpty()&& !searchedString3.isEmpty()&&searchedString.toLowerCase().contains(rcategory.toLowerCase())&&searchedString2.toLowerCase().contains(rcuisine.toLowerCase())&&
 //                            snapshot.child(searchedString3.toLowerCase()).getValue(String.class).equals("yes")
-                            searchedString3.toLowerCase().equals("wifi")&&wifi.equals("yes")
+                            searchedString3.toLowerCase().equals("wifi, ")&&wifi.equals("yes")
                             ){
                         //only more, and there is only wifi in more;
                         nameList.add(name);
@@ -1027,11 +1030,14 @@ public class FilterActivity extends AppCompatActivity {
         });
 
         String items = "";
-        for(String item:selectedItemsforToast){
-            items += "-" +item + "\n";
+        if(!selectedItemsforToast.isEmpty()) {
+            for (String item : selectedItemsforToast) {
+                items += "-" + item + "\n";
+            }
+            Toast.makeText(this, "You have selected \n" + items, Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, "You haven't selected yet.", Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(this, "You have selected \n" + items,Toast.LENGTH_LONG).show();
-
     }
 }
 //    ListView checkList = (ListView) findViewById(R.id.checkableList);
